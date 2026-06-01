@@ -40,6 +40,17 @@
             </div>
 
             <div class="config-section">
+                <label>Timer por pregunta</label>
+                <div class="button-group">
+                    <button class="btn-option selected" data-value="0">Sin timer</button>
+                    <button class="btn-option" data-value="30">30s</button>
+                    <button class="btn-option" data-value="60">60s</button>
+                    <button class="btn-option" data-value="90">90s</button>
+                </div>
+                <input type="hidden" id="timer-seconds" value="0">
+            </div>
+
+            <div class="config-section">
                 <label>Temas</label>
                 <div id="temas-container" class="checkbox-group">
                     <!-- Populated by JS -->
@@ -47,15 +58,23 @@
             </div>
 
             <button id="btn-start" class="btn-primary">Comenzar Quiz</button>
+            <button id="btn-history" class="btn-secondary">Ver Historial</button>
         </div>
 
         <!-- Vista 2: Pregunta -->
         <div id="view-question" class="view">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <div class="progress-text">
-                <span id="current-q">1</span> / <span id="total-q">20</span>
+            <div class="question-header">
+                <div class="progress-info">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="current-q">1</span> / <span id="total-q">20</span>
+                    </div>
+                </div>
+                <div id="timer-display" class="timer-display" style="display: none;">
+                    <span id="timer-value">60</span>s
+                </div>
             </div>
 
             <div class="question-card">
@@ -138,6 +157,18 @@
             </div>
 
             <button id="btn-new-quiz" class="btn-primary">Nuevo Quiz</button>
+        </div>
+
+        <!-- Vista 5: Historial -->
+        <div id="view-history" class="view">
+            <div class="history-header">
+                <h1>Historial</h1>
+                <button id="btn-back-config" class="btn-back">Volver</button>
+            </div>
+
+            <div id="history-list" class="history-list">
+                <!-- Populated by JS -->
+            </div>
         </div>
     </div>
 

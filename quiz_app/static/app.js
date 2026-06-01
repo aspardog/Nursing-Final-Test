@@ -13,7 +13,10 @@ const state = {
     modo: 'mixto',
     ratioMcq: 0.7,
     selectedSubtemas: [],
-    failedCardIds: []
+    failedCardIds: [],
+    timerSeconds: 0,
+    timerInterval: null,
+    questionStartTime: null
 };
 
 // DOM Elements
@@ -21,7 +24,8 @@ const views = {
     config: document.getElementById('view-config'),
     question: document.getElementById('view-question'),
     feedback: document.getElementById('view-feedback'),
-    summary: document.getElementById('view-summary')
+    summary: document.getElementById('view-summary'),
+    history: document.getElementById('view-history')
 };
 
 // Initialize app
@@ -58,6 +62,8 @@ function setupEventListeners() {
                         // Show/hide ratio slider
                         document.getElementById('ratio-section').style.display =
                             state.modo === 'mixto' ? 'block' : 'none';
+                    } else if (input.id === 'timer-seconds') {
+                        state.timerSeconds = parseInt(e.target.dataset.value);
                     }
                 }
             }
@@ -73,6 +79,10 @@ function setupEventListeners() {
 
     // Start button
     document.getElementById('btn-start').addEventListener('click', startQuiz);
+
+    // History button
+    document.getElementById('btn-history').addEventListener('click', showHistory);
+    document.getElementById('btn-back-config').addEventListener('click', () => showView('config'));
 
     // Confirm/Show answer buttons
     document.getElementById('btn-confirm').addEventListener('click', confirmAnswer);
@@ -136,6 +146,72 @@ async function loadTemas() {
 function showView(name) {
     Object.values(views).forEach(v => v.classList.remove('active'));
     views[name].classList.add('active');
+
+    // Stop timer when leaving question view
+    if (name !== 'question') {
+        stopTimer();
+    }
+}
+
+// ====== Timer ======
+
+function startTimer() {
+    if (state.timerSeconds <= 0) return;
+
+    const timerDisplay = document.getElementById('timer-display');
+    const timerValue = document.getElementById('timer-value');
+
+    timerDisplay.style.display = 'block';
+    timerDisplay.classList.remove('warning');
+
+    let remaining = state.timerSeconds;
+    timerValue.textContent = remaining;
+    state.questionStartTime = Date.now();
+
+    state.timerInterval = setInterval(() => {
+        remaining--;
+        timerValue.textContent = remaining;
+
+        // Warning at 10 seconds
+        if (remaining <= 10) {
+            timerDisplay.classList.add('warning');
+        }
+
+        // Time's up
+        if (remaining <= 0) {
+            stopTimer();
+            handleTimeUp();
+        }
+    }, 1000);
+}
+
+function stopTimer() {
+    if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+    }
+    const timerDisplay = document.getElementById('timer-display');
+    if (timerDisplay) {
+        timerDisplay.style.display = 'none';
+    }
+}
+
+function handleTimeUp() {
+    const q = state.questions[state.currentIndex];
+
+    if (q.formato === 'mcq') {
+        // Auto-submit with no selection (incorrect)
+        state.selectedOption = -1; // Invalid selection
+        confirmAnswer();
+    } else {
+        // Show answer for open questions
+        showAnswer();
+    }
+}
+
+function getElapsedTime() {
+    if (!state.questionStartTime) return null;
+    return Math.round((Date.now() - state.questionStartTime) / 1000);
 }
 
 // ====== Quiz Flow ======
@@ -165,6 +241,7 @@ async function startQuiz() {
         state.sessionId = data.session_id;
         state.questions = data.questions;
         state.currentIndex = 0;
+        state.failedCardIds = [];
 
         document.getElementById('total-q').textContent = state.questions.length;
 
@@ -181,6 +258,7 @@ function showQuestion() {
     const q = state.questions[state.currentIndex];
     state.selectedOption = null;
     state.selfEvaluation = null;
+    state.questionStartTime = Date.now();
 
     // Update progress
     document.getElementById('current-q').textContent = state.currentIndex + 1;
@@ -228,13 +306,19 @@ function showQuestion() {
 
         document.getElementById('user-answer').value = '';
     }
+
+    // Start timer if configured
+    startTimer();
 }
 
 async function confirmAnswer() {
+    stopTimer();
     const q = state.questions[state.currentIndex];
+    const timeSpent = getElapsedTime();
 
     if (q.formato === 'mcq' && state.selectedOption === null) {
         alert('Selecciona una opcion');
+        startTimer(); // Restart timer
         return;
     }
 
@@ -248,8 +332,9 @@ async function confirmAnswer() {
             session_id: state.sessionId,
             card_id: q.card_id,
             formato: q.formato,
-            user_answer: q.opciones[state.selectedOption],
-            correct: isCorrect
+            user_answer: state.selectedOption >= 0 ? q.opciones[state.selectedOption] : '(sin respuesta)',
+            correct: isCorrect,
+            time_seconds: timeSpent
         })
     });
 
@@ -263,6 +348,7 @@ async function confirmAnswer() {
 }
 
 function showAnswer() {
+    stopTimer();
     const q = state.questions[state.currentIndex];
     showFeedback(null, q, true);
 }
@@ -307,6 +393,7 @@ function showFeedback(isCorrect, question, isOpen = false) {
 
 async function nextQuestion() {
     const q = state.questions[state.currentIndex];
+    const timeSpent = getElapsedTime();
 
     // For open questions, record with self evaluation
     if (q.formato === 'abierto' && state.selfEvaluation) {
@@ -321,7 +408,8 @@ async function nextQuestion() {
                 formato: q.formato,
                 user_answer: document.getElementById('user-answer').value,
                 correct: isCorrect,
-                self_evaluation: state.selfEvaluation
+                self_evaluation: state.selfEvaluation,
+                time_seconds: timeSpent
             })
         });
 
@@ -414,9 +502,62 @@ function showSummary(summary) {
 }
 
 async function retryFailed() {
-    // Start a new quiz with only failed cards
-    // For now, just restart with same config
-    // TODO: implement card_ids filter in backend
-
     alert('Funcion en desarrollo. Por ahora, las tarjetas falladas se muestran arriba para repaso.');
+}
+
+// ====== History ======
+
+async function showHistory() {
+    try {
+        const response = await fetch('/api/history?limit=20');
+        const data = await response.json();
+
+        const historyList = document.getElementById('history-list');
+
+        if (data.sessions.length === 0) {
+            historyList.innerHTML = '<div class="history-empty">No hay sesiones anteriores</div>';
+        } else {
+            historyList.innerHTML = data.sessions.map(session => {
+                const date = new Date(session.started_at);
+                const dateStr = date.toLocaleDateString('es-ES', {
+                    day: 'numeric',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                const scoreClass = session.score_percent >= 70 ? 'good' :
+                                   session.score_percent >= 50 ? 'medium' : 'bad';
+
+                return `
+                    <div class="history-item" data-session-id="${session.session_id}">
+                        <div class="history-item-header">
+                            <span class="history-date">${dateStr}</span>
+                            <span class="history-score ${scoreClass}">${session.score_percent}%</span>
+                        </div>
+                        <div class="history-details">
+                            <span>${session.n_correct}/${session.n_questions} correctas</span>
+                            <span>${session.modo}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Click handler to view session details
+            historyList.querySelectorAll('.history-item').forEach(item => {
+                item.addEventListener('click', async () => {
+                    const sessionId = item.dataset.sessionId;
+                    const response = await fetch(`/api/quiz/${sessionId}/summary`);
+                    const summary = await response.json();
+                    showSummary(summary);
+                });
+            });
+        }
+
+        showView('history');
+
+    } catch (error) {
+        console.error('Error loading history:', error);
+        alert('Error cargando historial');
+    }
 }
