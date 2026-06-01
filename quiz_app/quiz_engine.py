@@ -4,6 +4,7 @@ Quiz engine - handles question sampling and quiz generation.
 import random
 import re
 from database import get_connection
+from text_normalizer import normalize_spanish_text
 
 
 def clean_answer_for_display(dorso: str) -> str:
@@ -13,7 +14,7 @@ def clean_answer_for_display(dorso: str) -> str:
     """
     # Remove the source part (usually at the end)
     clean = re.sub(r'<br><br><small><i>Fuente:.*?</i></small>', '', dorso)
-    return clean.strip()
+    return normalize_spanish_text(clean.strip()) or ""
 
 
 def get_answer_text(dorso: str) -> str:
@@ -22,7 +23,7 @@ def get_answer_text(dorso: str) -> str:
     """
     clean = re.sub(r'<[^>]+>', '', dorso)
     clean = re.sub(r'Fuente:.*$', '', clean, flags=re.IGNORECASE)
-    return clean.strip()
+    return normalize_spanish_text(clean.strip()) or ""
 
 
 def get_available_temas() -> list[dict]:
@@ -45,8 +46,8 @@ def get_available_temas() -> list[dict]:
     results = []
     for row in cursor.fetchall():
         results.append({
-            "tema": row[0],
-            "subtema": row[1],
+            "tema": normalize_spanish_text(row[0]) or "",
+            "subtema": normalize_spanish_text(row[1]) or "",
             "count": row[2],
             "mcq_count": row[3]
         })
@@ -129,13 +130,13 @@ def sample_questions(
 
         question = {
             "card_id": card["id"],
-            "pregunta": card["frente"],
+            "pregunta": normalize_spanish_text(card["frente"]) or "",
             "respuesta_correcta": clean_answer_for_display(card["dorso"]),
             "respuesta_texto": get_answer_text(card["dorso"]),
-            "tema": card["tema"],
-            "subtema": card["subtema"],
+            "tema": normalize_spanish_text(card["tema"]) or "",
+            "subtema": normalize_spanish_text(card["subtema"]) or "",
             "formato": formato,
-            "explicacion": card.get("explicacion", "")
+            "explicacion": normalize_spanish_text(card.get("explicacion", "")) or ""
         }
 
         # Add options for MCQ
@@ -291,8 +292,8 @@ def get_session_summary(session_id: int) -> dict:
             "correct": row[2],
             "self_evaluation": row[3],
             "time_seconds": row[4],
-            "pregunta": row[5],
-            "subtema": row[6],
+            "pregunta": normalize_spanish_text(row[5]) or "",
+            "subtema": normalize_spanish_text(row[6]) or "",
             "respuesta_correcta": clean_answer_for_display(row[7])
         }
         responses.append(resp)
@@ -310,8 +311,8 @@ def get_session_summary(session_id: int) -> dict:
         else:
             failed_cards.append({
                 "card_id": row[0],
-                "pregunta": row[5],
-                "subtema": row[6],
+                "pregunta": normalize_spanish_text(row[5]) or "",
+                "subtema": normalize_spanish_text(row[6]) or "",
                 "respuesta_correcta": clean_answer_for_display(row[7])
             })
 
@@ -357,8 +358,8 @@ def get_session_history(limit: int = 20) -> list[dict]:
             "ended_at": row[2],
             "n_questions": row[3],
             "n_correct": row[4],
-            "temas": row[5],
-            "modo": row[6],
+            "temas": normalize_spanish_text(row[5]) or "",
+            "modo": normalize_spanish_text(row[6]) or "",
             "score_percent": round(row[4] / row[3] * 100) if row[3] > 0 else 0
         })
 

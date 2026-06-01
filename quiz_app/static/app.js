@@ -19,6 +19,43 @@ const state = {
     questionStartTime: null
 };
 
+const MODE_LABELS = {
+    mixto: 'Mixto',
+    mcq: 'Respuesta múltiple',
+    abierto: 'Respuesta abierta'
+};
+
+const SUBTEMA_LABELS = {
+    afectividad: 'afectividad',
+    alucinaciones: 'alucinaciones',
+    atencion: 'atención',
+    calculo: 'cálculo',
+    conciencia: 'conciencia',
+    funciones_mentales: 'funciones mentales',
+    inteligencia: 'inteligencia',
+    juicio: 'juicio',
+    lenguaje: 'lenguaje',
+    memoria: 'memoria',
+    orientacion: 'orientación',
+    pensamiento: 'pensamiento',
+    porte_actitud: 'porte y actitud',
+    psicomotor: 'psicomotor',
+    sensopercepcion: 'sensopercepción',
+    'sueño': 'sueño'
+};
+
+function prettifyLabel(value) {
+    return value.replace(/_/g, ' ');
+}
+
+function getSubtemaLabel(subtema) {
+    return SUBTEMA_LABELS[subtema] || prettifyLabel(subtema);
+}
+
+function getModeLabel(mode) {
+    return MODE_LABELS[mode] || prettifyLabel(mode);
+}
+
 // DOM Elements
 const views = {
     config: document.getElementById('view-config'),
@@ -124,7 +161,7 @@ async function loadTemas() {
         container.innerHTML = subtemas.map(subtema => `
             <label class="checkbox-item">
                 <input type="checkbox" value="${subtema}" checked>
-                ${subtema.replace(/_/g, ' ')}
+                ${getSubtemaLabel(subtema)}
             </label>
         `).join('');
 
@@ -141,7 +178,7 @@ async function loadTemas() {
     } catch (error) {
         console.error('Error loading temas:', error);
         document.getElementById('temas-container').innerHTML =
-            '<div class="loading">Error cargando temas</div>';
+            '<div class="loading">Error al cargar los temas</div>';
     }
 }
 
@@ -245,9 +282,9 @@ async function startQuiz() {
         const data = await response.json();
 
         if (!response.ok) {
-            alert(data.detail || 'Error starting quiz');
+            alert(data.detail || 'Error al iniciar el quiz');
             btn.disabled = false;
-            btn.textContent = 'Comenzar Quiz';
+            btn.textContent = 'Comenzar quiz';
             return;
         }
 
@@ -263,10 +300,10 @@ async function startQuiz() {
 
     } catch (error) {
         console.error('Error starting quiz:', error);
-        alert('Error de conexion');
+        alert('Error de conexión');
     } finally {
         btn.disabled = false;
-        btn.textContent = 'Comenzar Quiz';
+        btn.textContent = 'Comenzar quiz';
     }
 }
 
@@ -285,8 +322,8 @@ function showQuestion() {
     const subtemaEl = document.getElementById('q-subtema');
     const formatoEl = document.getElementById('q-formato');
 
-    subtemaEl.textContent = q.subtema.replace(/_/g, ' ');
-    formatoEl.textContent = q.formato === 'mcq' ? 'Opcion Multiple' : 'Abierta';
+    subtemaEl.textContent = getSubtemaLabel(q.subtema);
+    formatoEl.textContent = q.formato === 'mcq' ? 'Respuesta múltiple' : 'Respuesta abierta';
     formatoEl.className = 'badge ' + (q.formato === 'mcq' ? 'mcq' : 'abierta');
 
     // Update question text
@@ -338,7 +375,7 @@ async function confirmAnswer() {
     const timeSpent = getElapsedTime();
 
     if (q.formato === 'mcq' && state.selectedOption === null) {
-        alert('Selecciona una opcion');
+        alert('Selecciona una opción');
         startTimer(); // Restart timer
         return;
     }
@@ -385,17 +422,17 @@ function showFeedback(isCorrect, question, isOpen = false) {
     if (isOpen) {
         // Open question - show self evaluation
         resultDiv.className = 'feedback-result pending';
-        resultDiv.innerHTML = '📝 Evalua tu respuesta';
+        resultDiv.innerHTML = '📝 Evalúa tu respuesta';
         selfEvalDiv.style.display = 'block';
         btnNext.style.display = 'none';
     } else {
         // MCQ - show result with emoji
         if (isCorrect) {
             resultDiv.className = 'feedback-result correct';
-            resultDiv.innerHTML = '✅ Correcto!';
+            resultDiv.innerHTML = '✅ ¡Correcto!';
         } else {
             resultDiv.className = 'feedback-result incorrect';
-            resultDiv.innerHTML = '❌ Incorrecto';
+            resultDiv.innerHTML = '❌ ¡Incorrecto!';
         }
         selfEvalDiv.style.display = 'none';
         btnNext.style.display = 'block';
@@ -520,7 +557,7 @@ function showSummary(summary) {
             const cls = pct >= 70 ? 'good' : pct >= 50 ? 'medium' : 'bad';
             return `
                 <div class="summary-row">
-                    <span class="label">${formato === 'mcq' ? 'Opcion Multiple' : 'Abierta'}</span>
+                <span class="label">${formato === 'mcq' ? 'Respuesta múltiple' : 'Respuesta abierta'}</span>
                     <span class="value ${cls}">${data.correct}/${data.total} (${pct}%)</span>
                 </div>
             `;
@@ -535,7 +572,7 @@ function showSummary(summary) {
             const cls = pct >= 70 ? 'good' : pct >= 50 ? 'medium' : 'bad';
             return `
                 <div class="summary-row">
-                    <span class="label">${subtema.replace(/_/g, ' ')}</span>
+                    <span class="label">${getSubtemaLabel(subtema)}</span>
                     <span class="value ${cls}">${data.correct}/${data.total} (${pct}%)</span>
                 </div>
             `;
@@ -604,7 +641,7 @@ async function showHistory() {
             historyList.innerHTML = `
                 <div class="history-empty">
                     <p>No hay sesiones anteriores</p>
-                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Completa tu primer quiz para ver tu historial aqui</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Completa tu primer quiz para ver tu historial aquí</p>
                 </div>
             `;
         } else {
@@ -628,7 +665,7 @@ async function showHistory() {
                         </div>
                         <div class="history-details">
                             <span>${session.n_correct}/${session.n_questions} correctas</span>
-                            <span>${session.modo}</span>
+                            <span>${getModeLabel(session.modo)}</span>
                         </div>
                     </div>
                 `;
@@ -649,7 +686,7 @@ async function showHistory() {
         console.error('Error loading history:', error);
         historyList.innerHTML = `
             <div class="history-empty">
-                <p>Error cargando historial</p>
+                <p>Error al cargar el historial</p>
             </div>
         `;
     }

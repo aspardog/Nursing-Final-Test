@@ -61,7 +61,7 @@ async def index():
     index_path = STATIC_DIR / "index.html"
     if index_path.exists():
         return FileResponse(index_path)
-    return {"message": "Quiz App API. Frontend not yet built."}
+    return {"message": "API del quiz de enfermería. El frontend aún no está construido."}
 
 
 @app.get("/api/temas")
@@ -79,11 +79,11 @@ async def start_quiz(request: QuizStartRequest):
     """
     # Validate modo
     if request.modo not in ["mixto", "mcq", "abierto"]:
-        raise HTTPException(status_code=400, detail="Modo must be mixto, mcq, or abierto")
+        raise HTTPException(status_code=400, detail="El modo debe ser mixto, mcq o abierto.")
 
     # Validate n_questions
     if request.n_questions < 1 or request.n_questions > 100:
-        raise HTTPException(status_code=400, detail="n_questions must be between 1 and 100")
+        raise HTTPException(status_code=400, detail="n_questions debe estar entre 1 y 100.")
 
     # Sample questions
     questions = sample_questions(
@@ -95,7 +95,7 @@ async def start_quiz(request: QuizStartRequest):
     )
 
     if not questions:
-        raise HTTPException(status_code=404, detail="No cards found matching filters")
+        raise HTTPException(status_code=404, detail="No se encontraron tarjetas con los filtros seleccionados.")
 
     # Create session
     temas_str = ",".join(request.temas) if request.temas else None
@@ -135,7 +135,7 @@ async def finish_quiz(request: EndSessionRequest):
     summary = get_session_summary(request.session_id)
 
     if not summary:
-        raise HTTPException(status_code=404, detail="Session not found")
+        raise HTTPException(status_code=404, detail="Sesión no encontrada.")
 
     return summary
 
@@ -146,7 +146,7 @@ async def quiz_summary(session_id: int):
     summary = get_session_summary(session_id)
 
     if not summary:
-        raise HTTPException(status_code=404, detail="Session not found")
+        raise HTTPException(status_code=404, detail="Sesión no encontrada.")
 
     return summary
 

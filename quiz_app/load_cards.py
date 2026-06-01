@@ -4,6 +4,7 @@ Script to load cards from CSV files into the SQLite database.
 import re
 from pathlib import Path
 from database import get_connection, init_db
+from text_normalizer import normalize_spanish_text
 
 CARDS_DIR = Path(__file__).parent.parent / "cards"
 
@@ -84,11 +85,11 @@ def load_csv(csv_path: Path) -> list[dict]:
             mcq_eligible = is_mcq_eligible(dorso)
 
             cards.append({
-                "frente": frente,
-                "dorso": dorso,
-                "tema": tema,
-                "subtema": subtema,
-                "fuente": fuente,
+                "frente": normalize_spanish_text(frente),
+                "dorso": normalize_spanish_text(dorso),
+                "tema": normalize_spanish_text(tema),
+                "subtema": normalize_spanish_text(subtema),
+                "fuente": normalize_spanish_text(fuente),
                 "mcq_eligible": mcq_eligible
             })
 

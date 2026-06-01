@@ -3,7 +3,8 @@ Script para agregar explicaciones educativas a todas las tarjetas.
 Generado por Claude para complementar el aprendizaje.
 """
 
-import sqlite3
+from database import get_connection, init_db
+from text_normalizer import normalize_spanish_text
 
 # Diccionario con explicaciones por ID de tarjeta
 EXPLICACIONES = {
@@ -443,7 +444,8 @@ EXPLICACIONES = {
 }
 
 def main():
-    conn = sqlite3.connect('data/quiz.db')
+    init_db()
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("PRAGMA table_info(cards)")
@@ -455,7 +457,7 @@ def main():
     for card_id, explicacion in EXPLICACIONES.items():
         cursor.execute(
             'UPDATE cards SET explicacion = ? WHERE id = ?',
-            (explicacion, card_id)
+            (normalize_spanish_text(explicacion), card_id)
         )
         if cursor.rowcount > 0:
             updated += 1
@@ -466,7 +468,7 @@ def main():
     print(f'Explicaciones actualizadas: {updated} de {len(EXPLICACIONES)}')
 
     # Verificar cuantas tarjetas quedan sin explicacion
-    conn = sqlite3.connect('data/quiz.db')
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute('SELECT COUNT(*) FROM cards WHERE explicacion IS NULL')
     sin_explicacion = cursor.fetchone()[0]
