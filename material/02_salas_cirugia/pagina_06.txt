@@ -1,0 +1,10 @@
+1. MEDICAMENTO ADMINISTRADO POR mcg/kg/min
+CONCEPTOS CLAVE
+2mg
+EJEMPLO: En un paciente se va a
+administrar dosis de mantenimiento de
+remifentanil con peso de 50kg, ¿Cómo lo
+administra si tiene una mezcla de 2mg en
+100ml?
+0.2mcg/kg/min
+0.4 mgc/kg/min

@@ -1,0 +1,6 @@
+FÓRMULAS
+cc/h: dosis (mcg/kg/min) x 60 x peso x cc total mezcla
+Concentración (mcg totales mezcla)
+mg/min: multiplicar mg x 60min, hacer regla de 3 con la mezcla 
+peso x 60 x cc total mezcla
+mcg/Kg/min: cc/h x concentración (mcg total mezcla)

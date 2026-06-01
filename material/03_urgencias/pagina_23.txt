@@ -1,0 +1,14 @@
+Ventana de 3horas
+Realizar en 20 min:
+Código ACV 
+Glucometría
+Oxigenoterapia
+Acceso IV
+TAC
+Valoración neurológica
+TIPOS:
+ISQUEMICO: trombolizar antes de la hora
+HEMORRAGICO: UCI vigilancia neurológica y luego terapia endovascular
+ACV
+ se debe trombolizar (TA: <180/110), en caso de superar las tensiones se 
+administra labetalol

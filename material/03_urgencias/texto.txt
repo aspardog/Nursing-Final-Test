@@ -1,0 +1,188 @@
+
+============================================================
+PÁGINA 1
+============================================================
+Cuidado al adulto
+agudizado
+MENTORIAS
+Alejandra González 
+Mariana Redondo Ruiz 
+
+============================================================
+PÁGINA 2
+============================================================
+FÓRMULAS
+cc/h: dosis (mcg/kg/min) x 60 x peso x cc total mezcla
+Concentración (mcg totales mezcla)
+mg/min: multiplicar mg x 60min, hacer regla de 3 con la mezcla 
+peso x 60 x cc total mezcla
+mcg/Kg/min: cc/h x concentración (mcg total mezcla)
+
+============================================================
+PÁGINA 3
+============================================================
+Repasemos EKG
+Calcular la FC
+
+============================================================
+PÁGINA 4
+============================================================
+Manejo arrITMIAS 
+
+============================================================
+PÁGINA 5
+============================================================
+Identifica el ekg
+Agrega el fármaco con su respectiva dosis.
+
+============================================================
+PÁGINA 6
+============================================================
+
+============================================================
+PÁGINA 7
+============================================================
+FLUTTER AURICULAR
+Se identifica a partir de forma de “serrucho” entre la R Y R
+Ritmo regular
+Onda P no es visible
+QRS angosto
+
+============================================================
+PÁGINA 8
+============================================================
+
+============================================================
+PÁGINA 9
+============================================================
+FIBRILACIÓN AURICULAR
+Onda P no es visible
+R-R Irregular 
+QRS angosto
+
+============================================================
+PÁGINA 10
+============================================================
+
+============================================================
+PÁGINA 11
+============================================================
+Bloqueo AV primer grado
+P-R prolongado que se mantiene en todas las derivaciones >0.20seg
+Todas las P conducen QRS
+R-R regular
+
+============================================================
+PÁGINA 12
+============================================================
+
+============================================================
+PÁGINA 13
+============================================================
+Bloqueo AV Segundo grado MOVITZ 1
+P-R prolongado se prolonga progresivamente en las derivaciones 
+hasta que la P deja de conducir QRS
+
+============================================================
+PÁGINA 14
+============================================================
+
+============================================================
+PÁGINA 15
+============================================================
+Bloqueo AV Segundo grado MOVITZ 2
+P-R normal y constante en todas las derivaciones pero 
+eventualmente P no conduce a QRS
+
+============================================================
+PÁGINA 16
+============================================================
+
+============================================================
+PÁGINA 17
+============================================================
+FRIBRILACIÓN VENTRICULAR
+QRS ancho 
+POLIMÓRFICA 
+Generalmente esta forma NO TIENE PULSO 
+
+============================================================
+PÁGINA 18
+============================================================
+
+============================================================
+PÁGINA 19
+============================================================
+Taquicardia Ventricular Monomófica
+No se diferencian las ondas P, T 
+QRS ancho 
+Picos en una misma dirección 
+IMPORTANTE: con pulso: cardioversión
+                            sin pulso: desfibrilar
+
+============================================================
+PÁGINA 20
+============================================================
+IAM
+
+============================================================
+PÁGINA 21
+============================================================
+IAM
+
+============================================================
+PÁGINA 22
+============================================================
+BEBEMONA
+B
+E
+E
+B
+M
+O
+Ventana de 6 a 12h
+En caso de IAM con elevación del ST, se debe trombolizar (TA: <180/110
+N
+A
+etabloqueador- metoprolol succinato 25-
+100mg
+statitas- Atorvastatina (80mg)
+Rosuvastatina (40mg)
+loqueador P2Y12- plasugrel 10mg (60mg),
+clopidogrel 75mg (300mg)  
+noxaparina enoxaparina (1mg/kg c/12hrs)
+ Heparina no fraccionada 5000ui y 2500ui si es
+renal 
+morfina SOLO SI DOLOR
+Oxígeno solo si hipoxia
+itratos-solo si HTA y dolor
+SA- 300mg
+
+============================================================
+PÁGINA 23
+============================================================
+Ventana de 3horas
+Realizar en 20 min:
+Código ACV 
+Glucometría
+Oxigenoterapia
+Acceso IV
+TAC
+Valoración neurológica
+TIPOS:
+ISQUEMICO: trombolizar antes de la hora
+HEMORRAGICO: UCI vigilancia neurológica y luego terapia endovascular
+ACV
+ se debe trombolizar (TA: <180/110), en caso de superar las tensiones se 
+administra labetalol
+
+============================================================
+PÁGINA 24
+============================================================
+URGENCIAS METABOLICAS
+
+============================================================
+PÁGINA 25
+============================================================
+gracias
+muchas

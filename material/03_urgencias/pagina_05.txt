@@ -1,0 +1,2 @@
+Identifica el ekg
+Agrega el fármaco con su respectiva dosis.
