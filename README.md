@@ -7,7 +7,7 @@ sdk: docker
 app_port: 7860
 pinned: false
 license: mit
-short_description: Simulador interactivo de examen final de enfermería con preguntas tipo quiz.
+short_description: Quiz interactivo de examen final de enfermería.
 ---
 
 # Nursing Final Test
