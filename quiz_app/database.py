@@ -1,14 +1,34 @@
 """
 Database initialization and utilities for the quiz app.
 """
+import os
+import shutil
 import sqlite3
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / "data" / "quiz.db"
+# Use /data/ for persistent storage on Hugging Face Spaces
+IS_HF_SPACE = os.environ.get("SPACE_ID") is not None
+LOCAL_DB_PATH = Path(__file__).parent / "data" / "quiz.db"
+HF_DB_PATH = Path("/data/quiz.db")
+
+if IS_HF_SPACE:
+    DB_PATH = HF_DB_PATH
+else:
+    DB_PATH = LOCAL_DB_PATH
+
+
+def ensure_db_exists():
+    """Ensure database exists, copying from local if needed (for HF Spaces)."""
+    if IS_HF_SPACE and not HF_DB_PATH.exists():
+        HF_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+        if LOCAL_DB_PATH.exists():
+            shutil.copy(LOCAL_DB_PATH, HF_DB_PATH)
+            print(f"Copied initial database to {HF_DB_PATH}")
 
 
 def get_connection() -> sqlite3.Connection:
     """Get a connection to the SQLite database."""
+    ensure_db_exists()
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
