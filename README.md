@@ -1,3 +1,12 @@
+---
+title: Quiz Enfermeria
+emoji: 📚
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+---
+
 # Nursing Final Test
 
 Simulador de examen final para estudiantes de enfermeria. El proyecto combina tarjetas tipo Anki, una API FastAPI, una base SQLite local y un frontend vanilla para practicar semiologia psiquiatrica con preguntas de opcion multiple y preguntas abiertas.

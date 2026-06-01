@@ -15,8 +15,8 @@ WORKDIR /app/quiz_app
 RUN python load_cards.py
 RUN python generate_explanations.py
 
-# Expose port
-EXPOSE 8000
+# Expose port (7860 for Hugging Face Spaces)
+EXPOSE 7860
 
 # Run the application
-CMD ["python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
