@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Enfermeria</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Vista 1: Configuracion -->
+        <div id="view-config" class="view active">
+            <h1>Quiz de Enfermeria</h1>
+            <p class="subtitle">Simulador de examen final</p>
+
+            <div class="config-section">
+                <label>Cantidad de preguntas</label>
+                <div class="button-group">
+                    <button class="btn-option" data-value="10">10</button>
+                    <button class="btn-option selected" data-value="20">20</button>
+                    <button class="btn-option" data-value="30">30</button>
+                    <button class="btn-option" data-value="50">50</button>
+                </div>
+                <input type="hidden" id="n-questions" value="20">
+            </div>
+
+            <div class="config-section">
+                <label>Modo</label>
+                <div class="button-group">
+                    <button class="btn-option selected" data-value="mixto">Mixto</button>
+                    <button class="btn-option" data-value="mcq">Solo MCQ</button>
+                    <button class="btn-option" data-value="abierto">Solo Abierto</button>
+                </div>
+                <input type="hidden" id="modo" value="mixto">
+            </div>
+
+            <div class="config-section" id="ratio-section">
+                <label>Proporcion MCQ: <span id="ratio-display">70%</span></label>
+                <input type="range" id="ratio-mcq" min="0" max="100" value="70">
+            </div>
+
+            <div class="config-section">
+                <label>Temas</label>
+                <div id="temas-container" class="checkbox-group">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <button id="btn-start" class="btn-primary">Comenzar Quiz</button>
+        </div>
+
+        <!-- Vista 2: Pregunta -->
+        <div id="view-question" class="view">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="current-q">1</span> / <span id="total-q">20</span>
+            </div>
+
+            <div class="question-card">
+                <div class="question-meta">
+                    <span class="badge" id="q-subtema"></span>
+                    <span class="badge" id="q-formato"></span>
+                </div>
+
+                <h2 id="question-text"></h2>
+
+                <!-- Opciones MCQ -->
+                <div id="mcq-options" class="options-container">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Respuesta abierta -->
+                <div id="open-answer" class="open-answer-container" style="display: none;">
+                    <textarea id="user-answer" placeholder="Escribe tu respuesta..."></textarea>
+                </div>
+
+                <button id="btn-confirm" class="btn-primary">Confirmar</button>
+                <button id="btn-show-answer" class="btn-secondary" style="display: none;">Mostrar Respuesta</button>
+            </div>
+        </div>
+
+        <!-- Vista 3: Feedback -->
+        <div id="view-feedback" class="view">
+            <div class="feedback-card">
+                <div id="feedback-result" class="feedback-result"></div>
+
+                <div class="correct-answer">
+                    <h3>Respuesta correcta:</h3>
+                    <div id="correct-answer-text"></div>
+                </div>
+
+                <div id="explanation-section" class="explanation-section" style="display: none;">
+                    <h4>Nota adicional:</h4>
+                    <p id="explanation-text"></p>
+                </div>
+
+                <!-- Auto-evaluacion para preguntas abiertas -->
+                <div id="self-eval" class="self-eval" style="display: none;">
+                    <p>Como evaluas tu respuesta?</p>
+                    <div class="button-group">
+                        <button class="btn-eval" data-value="sabia">Sabia</button>
+                        <button class="btn-eval" data-value="medias">Medias</button>
+                        <button class="btn-eval" data-value="no_sabia">No sabia</button>
+                    </div>
+                </div>
+
+                <button id="btn-next" class="btn-primary" style="display: none;">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- Vista 4: Resumen -->
+        <div id="view-summary" class="view">
+            <h1>Resumen</h1>
+
+            <div class="score-card">
+                <div class="score-big" id="final-score">0%</div>
+                <div class="score-detail">
+                    <span id="correct-count">0</span> / <span id="total-count">0</span> correctas
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <h3>Por formato</h3>
+                <div id="by-formato"></div>
+            </div>
+
+            <div class="summary-section">
+                <h3>Por tema</h3>
+                <div id="by-subtema"></div>
+            </div>
+
+            <div class="summary-section" id="failed-section" style="display: none;">
+                <h3>Tarjetas falladas</h3>
+                <div id="failed-cards"></div>
+                <button id="btn-retry-failed" class="btn-secondary">Repetir solo las falladas</button>
+            </div>
+
+            <button id="btn-new-quiz" class="btn-primary">Nuevo Quiz</button>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
