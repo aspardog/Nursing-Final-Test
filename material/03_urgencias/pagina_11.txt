@@ -1,4 +1,0 @@
-Bloqueo AV primer grado
-P-R prolongado que se mantiene en todas las derivaciones >0.20seg
-Todas las P conducen QRS
-R-R regular

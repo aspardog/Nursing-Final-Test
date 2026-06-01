@@ -13,10 +13,15 @@ env/
 # IDE
 .vscode/
 .idea/
+.claude/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Uploads (temporary files)
+# Non-production source artifacts
 uploads/
+material/
+
+# Tool caches
+.pytest_cache/

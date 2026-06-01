@@ -37,12 +37,14 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
+    overflow-x: hidden;
     color: var(--gray-800);
     line-height: 1.6;
     font-size: 16px;
 }
 
 .container {
+    width: 100%;
     max-width: 480px;
     margin: 0 auto;
     padding: 20px;
@@ -108,7 +110,7 @@ h1 {
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: 0.25rem;
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
 }
 
 h2 {
@@ -130,6 +132,7 @@ h3 {
     color: var(--gray-500);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
+    overflow-wrap: anywhere;
 }
 
 /* Main card wrapper */
@@ -138,6 +141,8 @@ h3 {
     border-radius: var(--radius-lg);
     padding: 24px;
     box-shadow: var(--shadow-lg);
+    width: 100%;
+    min-width: 0;
 }
 
 /* Config sections */
@@ -160,11 +165,13 @@ h3 {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    width: 100%;
+    min-width: 0;
 }
 
 .btn-option {
     flex: 1;
-    min-width: 60px;
+    min-width: 0;
     padding: 12px 14px;
     border: 2px solid var(--gray-200);
     background: white;
@@ -174,6 +181,8 @@ h3 {
     cursor: pointer;
     transition: all 0.2s ease;
     color: var(--gray-600);
+    overflow-wrap: anywhere;
+    white-space: normal;
 }
 
 .btn-option:hover {
@@ -261,11 +270,14 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    width: 100%;
+    min-width: 0;
 }
 
 .checkbox-item {
     display: flex;
     align-items: center;
+    min-width: 0;
     padding: 8px 12px;
     background: white;
     border: 2px solid var(--gray-200);
@@ -273,6 +285,7 @@ h3 {
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 0.9rem;
+    overflow-wrap: anywhere;
 }
 
 .checkbox-item:hover {
@@ -951,8 +964,14 @@ input[type="range"]::-webkit-slider-thumb:hover {
     }
 
     .btn-option {
+        flex-basis: calc(50% - 4px);
         padding: 10px 12px;
         font-size: 0.9rem;
+    }
+
+    .checkbox-item {
+        flex: 1 1 calc(50% - 4px);
+        justify-content: flex-start;
     }
 
     .option-btn {
@@ -966,7 +985,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     .question-card,
     .feedback-card,
     .main-card {
-        padding: 18px;
+        padding: 18px 16px;
     }
 
     .timer-display {

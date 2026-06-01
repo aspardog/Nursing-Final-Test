@@ -25,11 +25,11 @@ Simulador de examen final para estudiantes de enfermeria. El proyecto combina ta
 
 ## Stack
 
-- Backend: Python 3.10 a 3.13, FastAPI, Uvicorn, Pydantic.
+- Backend: Python 3.11, FastAPI, Uvicorn, Pydantic.
+- Paquetes: uv con `pyproject.toml` y `uv.lock`.
 - Persistencia: SQLite.
 - Frontend: HTML, CSS y JavaScript sin framework.
-- Testing: pytest.
-- Deploy: Docker o Render Blueprint.
+- Deploy: Hugging Face Spaces con Docker.
 
 ## Estructura
 
@@ -37,13 +37,6 @@ Simulador de examen final para estudiantes de enfermeria. El proyecto combina ta
 Nursing-Final-Test/
 ├── cards/
 │   └── cards_semiologia.csv       # Tarjetas Anki fuente
-├── material/                       # Material extraido de PDF/DOCX
-│   ├── 01_semiologia/
-│   ├── 02_salas_cirugia/
-│   ├── 03_urgencias/
-│   ├── 04_arritmias/
-│   ├── 05_mezclas/
-│   └── resumen.md
 ├── quiz_app/
 │   ├── app.py                     # API FastAPI y rutas
 │   ├── database.py                # Conexion, esquema y migraciones SQLite
@@ -51,54 +44,35 @@ Nursing-Final-Test/
 │   ├── quiz_engine.py             # Muestreo, sesiones, respuestas y resumen
 │   ├── distractor_generator.py    # Utilidades para distractoras MCQ
 │   ├── generate_explanations.py   # Carga explicaciones educativas por tarjeta
-│   ├── requirements.txt
 │   ├── static/
 │   │   ├── index.html
 │   │   ├── app.js
 │   │   └── style.css
-│   └── tests/
-│       └── test_engine.py
-├── extract.py                     # Extraccion mecanica de material fuente
 ├── Dockerfile
-├── render.yaml
+├── .python-version
+├── pyproject.toml
+├── uv.lock
 └── README.md
 ```
 
-La base `quiz_app/data/quiz.db`, los uploads originales, entornos virtuales y caches Python estan ignorados por Git.
+La base `quiz_app/data/quiz.db` es local y regenerable. El dato fuente que se sube al deploy vive en `cards/cards_semiologia.csv`.
 
 ## Instalacion Local
 
+Requiere `uv` instalado.
+
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install -r quiz_app/requirements.txt
-cd quiz_app
-python load_cards.py
-python generate_explanations.py
-python -m uvicorn app:app --reload --port 8000
+uv sync --frozen
+uv run --directory quiz_app python load_cards.py
+uv run --directory quiz_app python generate_explanations.py
+uv run --directory quiz_app python -m uvicorn app:app --reload --port 8000
 ```
 
 Abre `http://127.0.0.1:8000`.
 
-Si no necesitas explicaciones educativas, puedes omitir `python generate_explanations.py`; la app seguira mostrando preguntas y respuestas.
+Si no necesitas explicaciones educativas, puedes omitir `uv run --directory quiz_app python generate_explanations.py`; la app seguira mostrando preguntas y respuestas.
 
-Nota: las dependencias fijadas actualmente no instalan bien en Python 3.14. Usa Python 3.11 o 3.12 para desarrollo local.
-
-## Pruebas
-
-Desde la raiz del proyecto:
-
-```bash
-pytest quiz_app/tests
-```
-
-Los tests usan la base SQLite local. Si es una instalacion nueva, ejecuta primero:
-
-```bash
-cd quiz_app
-python load_cards.py
-python generate_explanations.py
-```
+Nota: el proyecto declara `requires-python = ">=3.11,<3.14"`. Usa Python 3.11, 3.12 o 3.13.
 
 ## API
 
@@ -143,42 +117,43 @@ Pregunta|Respuesta con <b>HTML</b>|examen_final::tema::subtema
 Luego ejecuta:
 
 ```bash
-cd quiz_app
-python load_cards.py
+uv run --directory quiz_app python load_cards.py
 ```
 
 Las tarjetas se cargan de forma idempotente por texto de pregunta (`frente`).
 
-## Material Fuente
-
-`extract.py` procesa archivos ubicados en `uploads/` y genera texto/JPG en `material/`. El resumen actual indica:
-
-- Semiologia psiquiatrica: 34 paginas, texto extraido.
-- Salas de cirugia: 17 paginas, texto y JPG.
-- Urgencias: 25 paginas, texto y JPG.
-- Arritmias: 11 paginas en JPG.
-- Mezclas y diluciones: ejercicios extraidos desde DOCX.
-
-`uploads/` esta ignorado para no publicar archivos temporales u originales pesados.
-
 ## Deploy
+
+### Hugging Face Spaces
+
+Este repo esta configurado para desplegarse como **Docker Space**. La configuracion que Hugging Face lee esta en el bloque YAML superior de este `README.md`:
+
+```yaml
+sdk: docker
+app_port: 7860
+```
+
+Pasos:
+
+1. Crea un Space nuevo en Hugging Face con SDK **Docker**.
+2. Sube este repo al Space o conectalo como repositorio Git remoto.
+3. Hugging Face construira el `Dockerfile`, cargara las tarjetas en SQLite durante el build y levantara FastAPI en el puerto `7860`.
+
+Comandos utiles si quieres subirlo por Git:
+
+```bash
+git remote add space https://huggingface.co/spaces/TU_USUARIO/quiz-enfermeria
+git push space main
+```
+
+La base `quiz_app/data/quiz.db` se genera dentro del contenedor a partir de `cards/cards_semiologia.csv`; no hace falta subirla. El historial de sesiones vive en SQLite dentro del contenedor, asi que puede reiniciarse cuando Hugging Face reconstruya o reinicie el Space.
 
 ### Docker
 
 ```bash
 docker build -t nursing-final-test .
-docker run -p 8000:8000 nursing-final-test
+docker run -p 7860:7860 nursing-final-test
 ```
-
-### Render
-
-El archivo `render.yaml` define un Web Service Python. Tambien puedes configurar Render manualmente:
-
-- Build Command: `pip install -r quiz_app/requirements.txt && cd quiz_app && python load_cards.py && python generate_explanations.py`
-- Start Command: `cd quiz_app && python -m uvicorn app:app --host 0.0.0.0 --port $PORT`
-- Python: 3.11
-
-El build command carga tarjetas y explicaciones en una base nueva antes de iniciar el servicio.
 
 ## Notas de Desarrollo
 
