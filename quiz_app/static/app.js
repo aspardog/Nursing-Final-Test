@@ -47,7 +47,7 @@ function setupEventListeners() {
                 const section = e.target.closest('.config-section');
                 const input = section.querySelector('input[type="hidden"]');
 
-                // Toggle selection
+                // Toggle selection with animation
                 section.querySelectorAll('.btn-option').forEach(btn => btn.classList.remove('selected'));
                 e.target.classList.add('selected');
 
@@ -107,8 +107,10 @@ function setupEventListeners() {
         showView('config');
     });
 
-    // Retry failed button
-    document.getElementById('btn-retry-failed').addEventListener('click', retryFailed);
+    // Back to config from summary
+    document.getElementById('btn-back-summary').addEventListener('click', () => {
+        showView('config');
+    });
 }
 
 async function loadTemas() {
@@ -138,6 +140,8 @@ async function loadTemas() {
 
     } catch (error) {
         console.error('Error loading temas:', error);
+        document.getElementById('temas-container').innerHTML =
+            '<div class="loading">Error cargando temas</div>';
     }
 }
 
@@ -151,6 +155,9 @@ function showView(name) {
     if (name !== 'question') {
         stopTimer();
     }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ====== Timer ======
@@ -161,7 +168,7 @@ function startTimer() {
     const timerDisplay = document.getElementById('timer-display');
     const timerValue = document.getElementById('timer-value');
 
-    timerDisplay.style.display = 'block';
+    timerDisplay.style.display = 'flex';
     timerDisplay.classList.remove('warning');
 
     let remaining = state.timerSeconds;
@@ -217,6 +224,10 @@ function getElapsedTime() {
 // ====== Quiz Flow ======
 
 async function startQuiz() {
+    const btn = document.getElementById('btn-start');
+    btn.disabled = true;
+    btn.textContent = 'Cargando...';
+
     const config = {
         n_questions: state.nQuestions,
         modo: state.modo,
@@ -235,6 +246,8 @@ async function startQuiz() {
 
         if (!response.ok) {
             alert(data.detail || 'Error starting quiz');
+            btn.disabled = false;
+            btn.textContent = 'Comenzar Quiz';
             return;
         }
 
@@ -251,6 +264,9 @@ async function startQuiz() {
     } catch (error) {
         console.error('Error starting quiz:', error);
         alert('Error de conexion');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Comenzar Quiz';
     }
 }
 
@@ -265,9 +281,13 @@ function showQuestion() {
     const progress = ((state.currentIndex) / state.questions.length) * 100;
     document.getElementById('progress-fill').style.width = progress + '%';
 
-    // Update question meta
-    document.getElementById('q-subtema').textContent = q.subtema.replace(/_/g, ' ');
-    document.getElementById('q-formato').textContent = q.formato === 'mcq' ? 'Opcion Multiple' : 'Abierta';
+    // Update question meta with styled badges
+    const subtemaEl = document.getElementById('q-subtema');
+    const formatoEl = document.getElementById('q-formato');
+
+    subtemaEl.textContent = q.subtema.replace(/_/g, ' ');
+    formatoEl.textContent = q.formato === 'mcq' ? 'Opcion Multiple' : 'Abierta';
+    formatoEl.className = 'badge ' + (q.formato === 'mcq' ? 'mcq' : 'abierta');
 
     // Update question text
     document.getElementById('question-text').textContent = q.pregunta;
@@ -284,9 +304,9 @@ function showQuestion() {
         btnConfirm.style.display = 'block';
         btnShowAnswer.style.display = 'none';
 
-        // Render options
+        // Render options with animation delay
         mcqContainer.innerHTML = q.opciones.map((opt, i) => `
-            <button class="option-btn" data-index="${i}">${opt}</button>
+            <button class="option-btn" data-index="${i}" style="animation-delay: ${i * 0.1}s">${opt}</button>
         `).join('');
 
         // Option click handler
@@ -305,6 +325,7 @@ function showQuestion() {
         btnShowAnswer.style.display = 'block';
 
         document.getElementById('user-answer').value = '';
+        document.getElementById('user-answer').focus();
     }
 
     // Start timer if configured
@@ -364,19 +385,25 @@ function showFeedback(isCorrect, question, isOpen = false) {
     if (isOpen) {
         // Open question - show self evaluation
         resultDiv.className = 'feedback-result pending';
-        resultDiv.textContent = 'Evalua tu respuesta';
+        resultDiv.innerHTML = '📝 Evalua tu respuesta';
         selfEvalDiv.style.display = 'block';
         btnNext.style.display = 'none';
     } else {
-        // MCQ - show result
-        resultDiv.className = 'feedback-result ' + (isCorrect ? 'correct' : 'incorrect');
-        resultDiv.textContent = isCorrect ? 'Correcto!' : 'Incorrecto';
+        // MCQ - show result with emoji
+        if (isCorrect) {
+            resultDiv.className = 'feedback-result correct';
+            resultDiv.innerHTML = '✅ Correcto!';
+        } else {
+            resultDiv.className = 'feedback-result incorrect';
+            resultDiv.innerHTML = '❌ Incorrecto';
+        }
         selfEvalDiv.style.display = 'none';
         btnNext.style.display = 'block';
 
         // Highlight options
         const options = document.querySelectorAll('.option-btn');
         options.forEach((btn, i) => {
+            btn.classList.add('disabled');
             if (i === question.respuesta_correcta_index) {
                 btn.classList.add('correct');
             } else if (i === state.selectedOption && !isCorrect) {
@@ -387,6 +414,17 @@ function showFeedback(isCorrect, question, isOpen = false) {
 
     // Show correct answer with HTML rendering
     document.getElementById('correct-answer-text').innerHTML = question.respuesta_correcta;
+
+    // Show explanation if available
+    const explanationSection = document.getElementById('explanation-section');
+    const explanationText = document.getElementById('explanation-text');
+
+    if (question.explicacion) {
+        explanationText.textContent = question.explicacion;
+        explanationSection.style.display = 'block';
+    } else {
+        explanationSection.style.display = 'none';
+    }
 
     showView('feedback');
 }
@@ -448,9 +486,30 @@ async function endQuiz() {
 function showSummary(summary) {
     // Score
     const percent = Math.round((summary.n_correct / summary.n_questions) * 100);
-    document.getElementById('final-score').textContent = percent + '%';
+    const scoreEl = document.getElementById('final-score');
+    const emojiEl = document.getElementById('score-emoji');
+
+    scoreEl.textContent = percent + '%';
     document.getElementById('correct-count').textContent = summary.n_correct;
     document.getElementById('total-count').textContent = summary.n_questions;
+
+    // Set score color class and emoji based on performance
+    scoreEl.className = 'score-big';
+    if (percent >= 90) {
+        scoreEl.classList.add('excellent');
+        emojiEl.textContent = '🎉';
+        // Trigger confetti for excellent scores
+        setTimeout(() => createConfetti(), 300);
+    } else if (percent >= 70) {
+        scoreEl.classList.add('good');
+        emojiEl.textContent = '👍';
+    } else if (percent >= 50) {
+        scoreEl.classList.add('needs-work');
+        emojiEl.textContent = '💪';
+    } else {
+        scoreEl.classList.add('poor');
+        emojiEl.textContent = '📚';
+    }
 
     // By formato
     const byFormato = document.getElementById('by-formato');
@@ -458,7 +517,7 @@ function showSummary(summary) {
         .filter(([_, data]) => data.total > 0)
         .map(([formato, data]) => {
             const pct = Math.round((data.correct / data.total) * 100);
-            const cls = pct >= 70 ? 'good' : pct >= 50 ? '' : 'bad';
+            const cls = pct >= 70 ? 'good' : pct >= 50 ? 'medium' : 'bad';
             return `
                 <div class="summary-row">
                     <span class="label">${formato === 'mcq' ? 'Opcion Multiple' : 'Abierta'}</span>
@@ -473,7 +532,7 @@ function showSummary(summary) {
         .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))
         .map(([subtema, data]) => {
             const pct = Math.round((data.correct / data.total) * 100);
-            const cls = pct >= 70 ? 'good' : pct >= 50 ? '' : 'bad';
+            const cls = pct >= 70 ? 'good' : pct >= 50 ? 'medium' : 'bad';
             return `
                 <div class="summary-row">
                     <span class="label">${subtema.replace(/_/g, ' ')}</span>
@@ -501,21 +560,53 @@ function showSummary(summary) {
     showView('summary');
 }
 
-async function retryFailed() {
-    alert('Funcion en desarrollo. Por ahora, las tarjetas falladas se muestran arriba para repaso.');
+// ====== Confetti Animation ======
+
+function createConfetti() {
+    const colors = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
+    const container = document.body;
+
+    for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = Math.random() * 50 + 50 + 'vh';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = confetti.style.width;
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            container.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 1000);
+        }, i * 30);
+    }
 }
 
 // ====== History ======
 
 async function showHistory() {
+    const historyList = document.getElementById('history-list');
+    historyList.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <span>Cargando historial...</span>
+        </div>
+    `;
+
+    showView('history');
+
     try {
         const response = await fetch('/api/history?limit=20');
         const data = await response.json();
 
-        const historyList = document.getElementById('history-list');
-
         if (data.sessions.length === 0) {
-            historyList.innerHTML = '<div class="history-empty">No hay sesiones anteriores</div>';
+            historyList.innerHTML = `
+                <div class="history-empty">
+                    <p>No hay sesiones anteriores</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Completa tu primer quiz para ver tu historial aqui</p>
+                </div>
+            `;
         } else {
             historyList.innerHTML = data.sessions.map(session => {
                 const date = new Date(session.started_at);
@@ -530,7 +621,7 @@ async function showHistory() {
                                    session.score_percent >= 50 ? 'medium' : 'bad';
 
                 return `
-                    <div class="history-item" data-session-id="${session.session_id}">
+                    <div class="history-item ${scoreClass}" data-session-id="${session.session_id}">
                         <div class="history-item-header">
                             <span class="history-date">${dateStr}</span>
                             <span class="history-score ${scoreClass}">${session.score_percent}%</span>
@@ -554,10 +645,12 @@ async function showHistory() {
             });
         }
 
-        showView('history');
-
     } catch (error) {
         console.error('Error loading history:', error);
-        alert('Error cargando historial');
+        historyList.innerHTML = `
+            <div class="history-empty">
+                <p>Error cargando historial</p>
+            </div>
+        `;
     }
 }

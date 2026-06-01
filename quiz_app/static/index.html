@@ -3,62 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="description" content="Simulador de examen de enfermeria - Practica con preguntas de opcion multiple y abiertas">
     <title>Quiz Enfermeria</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
 </head>
 <body>
     <div class="container">
         <!-- Vista 1: Configuracion -->
         <div id="view-config" class="view active">
-            <h1>Quiz de Enfermeria</h1>
-            <p class="subtitle">Simulador de examen final</p>
+            <div class="main-card">
+                <h1>Quiz de Enfermeria</h1>
+                <p class="subtitle">Simulador de examen final - Semiologia Psiquiatrica</p>
 
-            <div class="config-section">
-                <label>Cantidad de preguntas</label>
-                <div class="button-group">
-                    <button class="btn-option" data-value="10">10</button>
-                    <button class="btn-option selected" data-value="20">20</button>
-                    <button class="btn-option" data-value="30">30</button>
-                    <button class="btn-option" data-value="50">50</button>
+                <div class="config-section">
+                    <label>Cantidad de preguntas</label>
+                    <div class="button-group">
+                        <button class="btn-option" data-value="10">10</button>
+                        <button class="btn-option selected" data-value="20">20</button>
+                        <button class="btn-option" data-value="30">30</button>
+                        <button class="btn-option" data-value="50">50</button>
+                    </div>
+                    <input type="hidden" id="n-questions" value="20">
                 </div>
-                <input type="hidden" id="n-questions" value="20">
-            </div>
 
-            <div class="config-section">
-                <label>Modo</label>
-                <div class="button-group">
-                    <button class="btn-option selected" data-value="mixto">Mixto</button>
-                    <button class="btn-option" data-value="mcq">Solo MCQ</button>
-                    <button class="btn-option" data-value="abierto">Solo Abierto</button>
+                <div class="config-section">
+                    <label>Modo de preguntas</label>
+                    <div class="button-group">
+                        <button class="btn-option selected" data-value="mixto">Mixto</button>
+                        <button class="btn-option" data-value="mcq">Solo MCQ</button>
+                        <button class="btn-option" data-value="abierto">Solo Abierto</button>
+                    </div>
+                    <input type="hidden" id="modo" value="mixto">
                 </div>
-                <input type="hidden" id="modo" value="mixto">
-            </div>
 
-            <div class="config-section" id="ratio-section">
-                <label>Proporcion MCQ: <span id="ratio-display">70%</span></label>
-                <input type="range" id="ratio-mcq" min="0" max="100" value="70">
-            </div>
-
-            <div class="config-section">
-                <label>Timer por pregunta</label>
-                <div class="button-group">
-                    <button class="btn-option selected" data-value="0">Sin timer</button>
-                    <button class="btn-option" data-value="30">30s</button>
-                    <button class="btn-option" data-value="60">60s</button>
-                    <button class="btn-option" data-value="90">90s</button>
+                <div class="config-section" id="ratio-section">
+                    <label>Proporcion MCQ: <span id="ratio-display">70%</span></label>
+                    <input type="range" id="ratio-mcq" min="0" max="100" value="70">
                 </div>
-                <input type="hidden" id="timer-seconds" value="0">
-            </div>
 
-            <div class="config-section">
-                <label>Temas</label>
-                <div id="temas-container" class="checkbox-group">
-                    <!-- Populated by JS -->
+                <div class="config-section">
+                    <label>Timer por pregunta</label>
+                    <div class="button-group">
+                        <button class="btn-option selected" data-value="0">Sin timer</button>
+                        <button class="btn-option" data-value="30">30s</button>
+                        <button class="btn-option" data-value="60">60s</button>
+                        <button class="btn-option" data-value="90">90s</button>
+                    </div>
+                    <input type="hidden" id="timer-seconds" value="0">
                 </div>
-            </div>
 
-            <button id="btn-start" class="btn-primary">Comenzar Quiz</button>
-            <button id="btn-history" class="btn-secondary">Ver Historial</button>
+                <div class="config-section">
+                    <label>Temas</label>
+                    <div id="temas-container" class="checkbox-group">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <span>Cargando temas...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btn-start" class="btn-primary">Comenzar Quiz</button>
+                <button id="btn-history" class="btn-secondary">Ver Historial</button>
+            </div>
         </div>
 
         <!-- Vista 2: Pregunta -->
@@ -69,7 +77,7 @@
                         <div class="progress-fill" id="progress-fill"></div>
                     </div>
                     <div class="progress-text">
-                        <span id="current-q">1</span> / <span id="total-q">20</span>
+                        Pregunta <span id="current-q">1</span> de <span id="total-q">20</span>
                     </div>
                 </div>
                 <div id="timer-display" class="timer-display" style="display: none;">
@@ -92,11 +100,11 @@
 
                 <!-- Respuesta abierta -->
                 <div id="open-answer" class="open-answer-container" style="display: none;">
-                    <textarea id="user-answer" placeholder="Escribe tu respuesta..."></textarea>
+                    <textarea id="user-answer" placeholder="Escribe tu respuesta aqui..."></textarea>
                 </div>
 
-                <button id="btn-confirm" class="btn-primary">Confirmar</button>
-                <button id="btn-show-answer" class="btn-secondary" style="display: none;">Mostrar Respuesta</button>
+                <button id="btn-confirm" class="btn-primary">Confirmar Respuesta</button>
+                <button id="btn-show-answer" class="btn-secondary" style="display: none;">Ver Respuesta</button>
             </div>
         </div>
 
@@ -106,12 +114,12 @@
                 <div id="feedback-result" class="feedback-result"></div>
 
                 <div class="correct-answer">
-                    <h3>Respuesta correcta:</h3>
-                    <div id="correct-answer-text"></div>
+                    <h3>Respuesta correcta</h3>
+                    <div id="correct-answer-text" class="correct-answer-content"></div>
                 </div>
 
                 <div id="explanation-section" class="explanation-section" style="display: none;">
-                    <h4>Nota adicional:</h4>
+                    <h4>Explicacion</h4>
                     <p id="explanation-text"></p>
                 </div>
 
@@ -125,38 +133,37 @@
                     </div>
                 </div>
 
-                <button id="btn-next" class="btn-primary" style="display: none;">Siguiente</button>
+                <button id="btn-next" class="btn-primary" style="display: none;">Siguiente Pregunta</button>
             </div>
         </div>
 
         <!-- Vista 4: Resumen -->
         <div id="view-summary" class="view">
-            <h1>Resumen</h1>
-
             <div class="score-card">
+                <div id="score-emoji" class="score-emoji"></div>
                 <div class="score-big" id="final-score">0%</div>
                 <div class="score-detail">
-                    <span id="correct-count">0</span> / <span id="total-count">0</span> correctas
+                    <span id="correct-count">0</span> de <span id="total-count">0</span> correctas
                 </div>
             </div>
 
             <div class="summary-section">
-                <h3>Por formato</h3>
+                <h3>Resultados por formato</h3>
                 <div id="by-formato"></div>
             </div>
 
             <div class="summary-section">
-                <h3>Por tema</h3>
+                <h3>Resultados por tema</h3>
                 <div id="by-subtema"></div>
             </div>
 
             <div class="summary-section" id="failed-section" style="display: none;">
-                <h3>Tarjetas falladas</h3>
+                <h3>Tarjetas para repasar</h3>
                 <div id="failed-cards"></div>
-                <button id="btn-retry-failed" class="btn-secondary">Repetir solo las falladas</button>
             </div>
 
             <button id="btn-new-quiz" class="btn-primary">Nuevo Quiz</button>
+            <button id="btn-back-summary" class="btn-secondary">Volver al Inicio</button>
         </div>
 
         <!-- Vista 5: Historial -->
@@ -167,7 +174,10 @@
             </div>
 
             <div id="history-list" class="history-list">
-                <!-- Populated by JS -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <span>Cargando historial...</span>
+                </div>
             </div>
         </div>
     </div>

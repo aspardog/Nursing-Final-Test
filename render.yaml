@@ -5,7 +5,7 @@ services:
   - type: web
     name: quiz-enfermeria
     env: python
-    buildCommand: pip install -r quiz_app/requirements.txt && cd quiz_app && python load_cards.py
+    buildCommand: pip install -r quiz_app/requirements.txt && cd quiz_app && python load_cards.py && python generate_explanations.py
     startCommand: cd quiz_app && python -m uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION

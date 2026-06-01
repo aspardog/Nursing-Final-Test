@@ -29,9 +29,15 @@ def init_db():
             subtema TEXT,
             fuente TEXT,
             mcq_eligible BOOLEAN DEFAULT 1,
+            explicacion TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
+
+    cursor.execute("PRAGMA table_info(cards)")
+    card_columns = {row[1] for row in cursor.fetchall()}
+    if "explicacion" not in card_columns:
+        cursor.execute("ALTER TABLE cards ADD COLUMN explicacion TEXT")
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS distractors (

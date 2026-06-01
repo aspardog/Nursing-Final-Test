@@ -79,7 +79,7 @@ def sample_questions(
     cursor = conn.cursor()
 
     # Build query based on filters
-    query = "SELECT id, frente, dorso, tema, subtema, mcq_eligible FROM cards WHERE 1=1"
+    query = "SELECT id, frente, dorso, tema, subtema, mcq_eligible, explicacion FROM cards WHERE 1=1"
     params = []
 
     if temas:
@@ -134,7 +134,8 @@ def sample_questions(
             "respuesta_texto": get_answer_text(card["dorso"]),
             "tema": card["tema"],
             "subtema": card["subtema"],
-            "formato": formato
+            "formato": formato,
+            "explicacion": card.get("explicacion", "")
         }
 
         # Add options for MCQ

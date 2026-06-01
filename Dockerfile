@@ -13,6 +13,7 @@ COPY cards/ ./cards/
 # Initialize database with cards
 WORKDIR /app/quiz_app
 RUN python load_cards.py
+RUN python generate_explanations.py
 
 # Expose port
 EXPOSE 8000
