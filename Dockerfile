@@ -18,10 +18,11 @@ RUN uv sync --frozen --no-dev
 COPY quiz_app/ ./quiz_app/
 COPY cards/ ./cards/
 
-# Initialize database with cards
+# Initialize database with cards and distractors
 WORKDIR /app/quiz_app
 RUN uv run --frozen python load_cards.py
 RUN uv run --frozen python generate_explanations.py
+RUN uv run --frozen python generate_distractors.py
 
 # Expose port (7860 for Hugging Face Spaces)
 EXPOSE 7860
