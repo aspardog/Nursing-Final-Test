@@ -851,7 +851,7 @@ DISTRACTORES = {
     ],
     173: [
         "Movimientos ritmicos y oscilatorios continuos.",
-        "Movimientos breves y espasmódicos en cara y cuello.",
+        "Movimientos breves y espasmodicos en cara y cuello.",
         "Movimientos lentos de contraccion sostenida."
     ],
     174: [
@@ -861,7 +861,7 @@ DISTRACTORES = {
     ],
     175: [
         "Movimientos ritmicos y oscilatorios sin dolor.",
-        "Movimientos breves y espasmódicos sin contraccion.",
+        "Movimientos breves y espasmodicos sin contraccion.",
         "Movimientos subitos y breves en extremidades."
     ],
     176: [
