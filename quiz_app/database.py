@@ -6,10 +6,14 @@ import shutil
 import sqlite3
 from pathlib import Path
 
+# Version number - increment this to force database rebuild on HF Spaces
+DB_VERSION = 2  # v2: Added 145 new cards with 4 main topics
+
 # Use /data/ for persistent storage on Hugging Face Spaces
 IS_HF_SPACE = os.environ.get("SPACE_ID") is not None
 LOCAL_DB_PATH = Path(__file__).parent / "data" / "quiz.db"
 HF_DB_PATH = Path("/data/quiz.db")
+HF_VERSION_PATH = Path("/data/db_version.txt")
 
 if IS_HF_SPACE:
     DB_PATH = HF_DB_PATH
@@ -17,13 +21,33 @@ else:
     DB_PATH = LOCAL_DB_PATH
 
 
+def get_stored_version() -> int:
+    """Get the stored database version on HF Spaces."""
+    if HF_VERSION_PATH.exists():
+        try:
+            return int(HF_VERSION_PATH.read_text().strip())
+        except (ValueError, IOError):
+            return 0
+    return 0
+
+
+def set_stored_version(version: int):
+    """Store the database version on HF Spaces."""
+    HF_VERSION_PATH.parent.mkdir(parents=True, exist_ok=True)
+    HF_VERSION_PATH.write_text(str(version))
+
+
 def ensure_db_exists():
     """Ensure database exists, copying from local if needed (for HF Spaces)."""
-    if IS_HF_SPACE and not HF_DB_PATH.exists():
-        HF_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-        if LOCAL_DB_PATH.exists():
+    if IS_HF_SPACE:
+        stored_version = get_stored_version()
+        needs_update = not HF_DB_PATH.exists() or stored_version < DB_VERSION
+
+        if needs_update and LOCAL_DB_PATH.exists():
+            HF_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(LOCAL_DB_PATH, HF_DB_PATH)
-            print(f"Copied initial database to {HF_DB_PATH}")
+            set_stored_version(DB_VERSION)
+            print(f"Updated database to version {DB_VERSION} at {HF_DB_PATH}")
 
 
 def get_connection() -> sqlite3.Connection:
