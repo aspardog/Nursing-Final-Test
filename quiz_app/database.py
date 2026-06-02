@@ -7,7 +7,9 @@ import sqlite3
 from pathlib import Path
 
 # Version number - increment this to force database rebuild on HF Spaces
-DB_VERSION = 3  # v3: Force update - 354 cards with 4 main topics
+DB_VERSION = 4  # v4: validate persisted DB contains all 4 main topics
+EXPECTED_TEMAS = {"salud_mental", "urgencias", "cirugia", "mezclas"}
+EXPECTED_MIN_CARDS = 354
 
 # Use /data/ for persistent storage on Hugging Face Spaces
 IS_HF_SPACE = os.environ.get("SPACE_ID") is not None
@@ -37,11 +39,33 @@ def set_stored_version(version: int):
     HF_VERSION_PATH.write_text(str(version))
 
 
+def hf_db_has_expected_content() -> bool:
+    """Check that the persisted HF database has the expected card dataset."""
+    if not HF_DB_PATH.exists():
+        return False
+
+    try:
+        conn = sqlite3.connect(HF_DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM cards")
+        card_count = cursor.fetchone()[0]
+        cursor.execute("SELECT DISTINCT tema FROM cards")
+        temas = {row[0] for row in cursor.fetchall()}
+        conn.close()
+    except sqlite3.Error:
+        return False
+
+    return card_count >= EXPECTED_MIN_CARDS and EXPECTED_TEMAS.issubset(temas)
+
+
 def ensure_db_exists():
     """Ensure database exists, copying from local if needed (for HF Spaces)."""
     if IS_HF_SPACE:
         stored_version = get_stored_version()
-        needs_update = not HF_DB_PATH.exists() or stored_version < DB_VERSION
+        needs_update = (
+            stored_version < DB_VERSION
+            or not hf_db_has_expected_content()
+        )
 
         if needs_update and LOCAL_DB_PATH.exists():
             HF_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
