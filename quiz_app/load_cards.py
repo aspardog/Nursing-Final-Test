@@ -23,6 +23,15 @@ CSV_ORDER = [
     "cards_mezclas_cloze.csv",    # ID 354
 ]
 
+# Mapeo de temas de los CSV a los 4 temas principales
+TEMA_MAPPING = {
+    "semiologia": "salud_mental",
+    "urgencias": "urgencias",
+    "arritmias": "urgencias",  # Arritmias es parte de urgencias
+    "salas": "cirugia",
+    "mezclas": "mezclas",
+}
+
 
 def extract_fuente(dorso: str) -> str | None:
     """Extract the source (Fuente) from the card back."""
@@ -33,11 +42,16 @@ def extract_fuente(dorso: str) -> str | None:
 def parse_tag(tag: str) -> tuple[str, str | None]:
     """
     Parse a hierarchical tag into tema and subtema.
-    Example: 'examen_final::semiologia::atencion' -> ('semiologia', 'atencion')
+    Maps original topics to 4 main categories: salud_mental, urgencias, cirugia, mezclas.
+    Example: 'examen_final::semiologia::atencion' -> ('salud_mental', 'atencion')
     """
     partes = tag.split("::")
-    tema = partes[1] if len(partes) > 1 else "general"
+    tema_original = partes[1] if len(partes) > 1 else "general"
     subtema = partes[2] if len(partes) > 2 else None
+
+    # Map to the 4 main topics
+    tema = TEMA_MAPPING.get(tema_original, tema_original)
+
     return tema, subtema
 
 
