@@ -1,0 +1,7 @@
+#separator:pipe
+#html:true
+#notetype:Cloze
+#deck:Examen Final Enfermería::Arritmias
+#columns:Text|Back Extra|Tags
+#tags column:3
+Para leer un EKG (analizar el ritmo) se evalúan 4 elementos: {{c1::regularidad entre R-R}}, {{c2::complejo QRS ancho o angosto}}, {{c3::presencia de onda P}} y {{c4::segmento PR}}.|<small><i>Fuente: Notas de Arritmias cardíacas, p. 1</i></small>|examen_final::arritmias::lectura

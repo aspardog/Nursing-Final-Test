@@ -1,0 +1,21 @@
+#separator:pipe
+#html:true
+#notetype:Cloze
+#deck:Examen Final Enfermería::Urgencias
+#columns:Text|Back Extra|Tags
+#tags column:3
+Fórmula para calcular <b>cc/h</b> (velocidad de infusión): cc/h = {{c1::dosis (mcg/kg/min) × 60 × peso × cc totales de la mezcla}} ÷ {{c2::concentración (mcg totales de la mezcla)}}|<small><i>Fuente: Mentoría Urgencias, p. 2</i></small>|examen_final::urgencias::formulas
+Fórmula para calcular <b>mcg/kg/min</b> (dosis a partir de la velocidad): mcg/kg/min = {{c1::cc/h × concentración (mcg totales de la mezcla)}} ÷ {{c2::peso × 60 × cc totales de la mezcla}}|<small><i>Fuente: Mentoría Urgencias, p. 2</i></small>|examen_final::urgencias::formulas
+Para calcular <b>mg/min</b> se multiplica {{c1::mg × 60 min}} y luego se hace {{c2::regla de 3 con la mezcla}}.|<small><i>Fuente: Mentoría Urgencias, p. 2</i></small>|examen_final::urgencias::formulas
+Evolución temporal del IAM en el EKG: 1.º {{c1::onda T picuda}} → 2.º {{c2::elevación del ST convexa}} → 3.º {{c3::onda Q y onda T negativa}}.|<small><i>Fuente: Mentoría Urgencias, p. 20</i></small>|examen_final::urgencias::iam
+Manejo de la fibrilación ventricular / TV sin pulso (ritmo desfibrilable): 1) Descarga → {{c1::2 min de RCP}} → acceso venoso → revisar ritmo. 2) Descarga → {{c2::adrenalina 1 mg cada 3-5 min}} → revisar ritmo. 3) Descarga → {{c3::amiodarona 300 mg en bolo o lidocaína 1 mg/kg}}. Si el ritmo NO es desfibrilable: {{c4::adrenalina y manejar las causas reversibles}}.|<small><i>Fuente: Mentoría Urgencias, p. 4</i></small>|examen_final::urgencias::arritmias_manejo
+Mnemotecnia del manejo farmacológico del IAM: {{c1::BEBEMONA}} → Betabloqueador, Estatinas, Bloqueador P2Y12, Enoxaparina, Morfina, Oxígeno, Nitratos, ASA.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — 1.ª <b>B</b>: {{c1::Betabloqueador}} → metoprolol succinato {{c2::25-100 mg}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — 1.ª <b>E</b>: {{c1::Estatinas}} → atorvastatina {{c2::80 mg}} o rosuvastatina {{c2::40 mg}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — 2.ª <b>B</b>: {{c1::Bloqueador P2Y12}} → prasugrel {{c2::10 mg (carga 60 mg)}} o clopidogrel {{c2::75 mg (carga 300 mg)}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — 2.ª <b>E</b>: {{c1::Enoxaparina}} {{c2::1 mg/kg cada 12 h}}; alternativa heparina no fraccionada 5000 UI (2500 UI si falla renal).|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — <b>M</b>: {{c1::Morfina}}, {{c2::solo si hay dolor}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — <b>O</b>: {{c1::Oxígeno}}, {{c2::solo si hay hipoxia}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — <b>N</b>: {{c1::Nitratos}}, {{c2::solo si HTA y dolor}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+BEBEMONA (IAM) — <b>A</b>: {{c1::ASA (aspirina)}} {{c2::300 mg}}.|<small><i>Fuente: Mentoría Urgencias, p. 22</i></small>|examen_final::urgencias::iam
+Mnemotecnia <b>CORRE</b> para reconocer signos de ACV: {{c1::Cara torcida}} · {{c2::Ojo: alteración de la visión}} · {{c3::Rápida debilidad de un brazo o pierna}} · {{c4::Raro al hablar (dificultad para hablar)}} · {{c5::Emergencias: llamar al 123}}.|<small><i>Fuente: Mentoría Urgencias, p. 23</i></small>|examen_final::urgencias::acv

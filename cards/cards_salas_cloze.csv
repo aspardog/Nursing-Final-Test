@@ -1,0 +1,12 @@
+#separator:pipe
+#html:true
+#notetype:Cloze
+#deck:Examen Final Enfermería::Salas de Cirugía
+#columns:Text|Back Extra|Tags
+#tags column:3
+Las 3 fases de administración de medicamentos en anestesia, en orden: 1) {{c1::Inducción}} → 2) {{c2::Mantenimiento}} → 3) {{c3::Recuperación}}.|<small><i>Fuente: Mentoría Salas de Cirugía, p. 3</i></small>|examen_final::salas::orden_medicamentos
+Fase de INDUCCIÓN anestésica — incluye: {{c1::anestésicos inhalados}}, {{c2::anestésicos endovenosos}}, {{c3::analgesia}} y {{c4::relajantes musculares}}.|<small><i>Fuente: Mentoría Salas de Cirugía, p. 3</i></small>|examen_final::salas::orden_medicamentos
+Fase de MANTENIMIENTO anestésico — incluye: {{c1::anestesia endovenosa}}, {{c2::anestesia inhalatoria}} y {{c3::analgesia}}.|<small><i>Fuente: Mentoría Salas de Cirugía, p. 3</i></small>|examen_final::salas::orden_medicamentos
+Fase de RECUPERACIÓN anestésica — incluye: {{c1::reversión muscular}}, {{c2::antiemético}} y {{c3::analgesia}}.|<small><i>Fuente: Mentoría Salas de Cirugía, p. 3</i></small>|examen_final::salas::orden_medicamentos
+Escala <b>LEMON</b> para valorar vía aérea difícil: {{c1::L = Localizar}} (lesión/trauma, vello facial, mentón pequeño, cuello ancho, lengua grande) · {{c2::E = Evaluar 3-3-2}} · {{c3::M = Mallampati &gt;3}} · {{c4::O = Obstrucción/Obesidad}} · {{c5::N = No mueve el cuello}}.|<small><i>Fuente: Mentoría Salas de Cirugía, p. 16</i></small>|examen_final::salas::via_aerea
+Regla <b>3-3-2</b> de vía aérea (dentro de LEMON): {{c1::&gt;3 dedos}} de apertura interincisiva, {{c2::&gt;3 dedos}} de distancia mentohioidea y {{c3::&gt;2 dedos}} del cartílago tiroides al piso de la boca.|<small><i>Fuente: Mentoría Salas de Cirugía, p. 16</i></small>|examen_final::salas::via_aerea

@@ -1,0 +1,11 @@
+#separator:pipe
+#html:true
+#notetype:Cloze
+#deck:Examen Final Enfermería::Semiología
+#columns:Text|Back Extra|Tags
+#tags column:3
+Las funciones mentales (actividad del SNC) se agrupan en 5 categorías: <b>de relación</b> = {{c1::porte y actitud, conciencia, orientación, atención y sueño}}; <b>cognoscitivas</b> = {{c2::sensopercepción, lenguaje, memoria y pensamiento}}; <b>de síntesis</b> = {{c3::inteligencia, juicio/raciocinio y cálculo}}; <b>afectivas</b> = {{c4::afectividad}}; <b>control ejecutivo</b> = {{c5::conducta psicomotora}}.|<small><i>Fuente: Semiología Psiquiátrica, p. 1-2, 15, 27, 29</i></small>|examen_final::semiologia::funciones_mentales
+El pensamiento se valora en 3 aspectos: {{c1::forma}} (la lógica: identidad, espacialidad y no contradicción), {{c2::curso}} (el ritmo o velocidad y la continuidad de la asociación) y {{c3::contenido}} (las ideas).|<small><i>Fuente: Semiología Psiquiátrica, p. 19</i></small>|examen_final::semiologia::pensamiento
+Arquitectura del sueño en orden: vigilia → {{c1::N1}} (adormecimiento, movimientos oculares lentos) → {{c2::N2}} (sueño ligero, husos de sueño) → {{c3::N3}} (sueño profundo, ondas lentas) → {{c4::REM}} (atonía muscular + movimientos oculares rápidos). Las fases N1-N3 son sueño NREM.|<small><i>Fuente: Semiología Psiquiátrica, p. 11-12</i></small>|examen_final::semiologia::sueño
+Ondas cerebrales en el EEG y el estado que reflejan: {{c1::Beta}} (12-33 Hz, alerta/concentración), {{c2::Alfa}} (8-13 Hz, relajado pero despierto), {{c3::Theta}} (3,5-8 Hz, imaginación/reflexión y sueños), {{c4::Delta}} (1-3 Hz, sueño profundo) y {{c5::Gamma}} (25-100 Hz, alto procesamiento cognitivo).|<small><i>Fuente: Semiología Psiquiátrica, p. 12</i></small>|examen_final::semiologia::sueño
+Las sensaciones se clasifican en 3 tipos: {{c1::exteroceptivas}} (de los órganos de los sentidos), {{c2::propioceptivas}} (situación del cuerpo en el espacio: músculos, articulaciones y tendones) e {{c3::interoceptivas}} (estímulos viscerales: sed, hambre y dolor).|<small><i>Fuente: Semiología Psiquiátrica, p. 16</i></small>|examen_final::semiologia::sensopercepcion

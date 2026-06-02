@@ -1,0 +1,7 @@
+#separator:pipe
+#html:true
+#notetype:Cloze
+#deck:Examen Final Enfermería::Mezclas y Diluciones
+#columns:Text|Back Extra|Tags
+#tags column:3
+Método general para programar una bomba de infusión (ml/h) a partir de una dosis por peso: 1) calcular la dosis por hora = {{c1::dosis × peso}} (y {{c2::× 60}} si la dosis viene por minuto); 2) dividir entre la {{c3::concentración de la mezcla}} (cantidad ÷ volumen). Entonces ml/h = dosis por hora ÷ concentración.|<small><i>Fuente: Ejercicios de Mezclas y Diluciones</i></small>|examen_final::mezclas::metodo
