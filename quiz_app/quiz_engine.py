@@ -273,7 +273,7 @@ def get_session_summary(session_id: int) -> dict:
     # Get responses with card info
     cursor.execute("""
         SELECT r.card_id, r.formato, r.correct, r.self_evaluation, r.time_seconds,
-               c.frente, c.subtema, c.dorso
+               c.frente, c.tema, c.dorso
         FROM responses r
         JOIN cards c ON r.card_id = c.id
         WHERE r.session_id = ?
@@ -281,7 +281,7 @@ def get_session_summary(session_id: int) -> dict:
     """, (session_id,))
 
     responses = []
-    by_subtema = {}
+    by_tema = {}
     by_formato = {"mcq": {"total": 0, "correct": 0}, "abierto": {"total": 0, "correct": 0}}
     failed_cards = []
 
@@ -293,26 +293,26 @@ def get_session_summary(session_id: int) -> dict:
             "self_evaluation": row[3],
             "time_seconds": row[4],
             "pregunta": normalize_spanish_text(row[5]) or "",
-            "subtema": normalize_spanish_text(row[6]) or "",
+            "tema": normalize_spanish_text(row[6]) or "",
             "respuesta_correcta": clean_answer_for_display(row[7])
         }
         responses.append(resp)
 
-        # Aggregate by subtema
-        subtema = row[6]
-        if subtema not in by_subtema:
-            by_subtema[subtema] = {"total": 0, "correct": 0}
-        by_subtema[subtema]["total"] += 1
+        # Aggregate by tema
+        tema = row[6]
+        if tema not in by_tema:
+            by_tema[tema] = {"total": 0, "correct": 0}
+        by_tema[tema]["total"] += 1
 
         # Determine if correct (MCQ: correct field, Abierto: self_evaluation)
         is_correct = row[2] if row[1] == "mcq" else (row[3] == "sabia")
         if is_correct:
-            by_subtema[subtema]["correct"] += 1
+            by_tema[tema]["correct"] += 1
         else:
             failed_cards.append({
                 "card_id": row[0],
                 "pregunta": normalize_spanish_text(row[5]) or "",
-                "subtema": normalize_spanish_text(row[6]) or "",
+                "tema": normalize_spanish_text(row[6]) or "",
                 "respuesta_correcta": clean_answer_for_display(row[7])
             })
 
@@ -332,7 +332,7 @@ def get_session_summary(session_id: int) -> dict:
         "temas": session[5],
         "modo": session[6],
         "responses": responses,
-        "by_subtema": by_subtema,
+        "by_tema": by_tema,
         "by_formato": by_formato,
         "failed_cards": failed_cards
     }

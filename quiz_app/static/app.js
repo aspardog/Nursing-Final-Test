@@ -12,7 +12,7 @@ const state = {
     nQuestions: 20,
     modo: 'mixto',
     ratioMcq: 0.7,
-    selectedSubtemas: [],
+    selectedTemas: [],
     failedCardIds: [],
     timerSeconds: 0,
     timerInterval: null,
@@ -23,6 +23,13 @@ const MODE_LABELS = {
     mixto: 'Mixto',
     mcq: 'Respuesta múltiple',
     abierto: 'Respuesta abierta'
+};
+
+const TEMA_LABELS = {
+    salud_mental: 'Salud Mental',
+    urgencias: 'Urgencias',
+    cirugia: 'Cirugía',
+    mezclas: 'Mezclas'
 };
 
 const SUBTEMA_LABELS = {
@@ -46,6 +53,10 @@ const SUBTEMA_LABELS = {
 
 function prettifyLabel(value) {
     return value.replace(/_/g, ' ');
+}
+
+function getTemaLabel(tema) {
+    return TEMA_LABELS[tema] || prettifyLabel(tema);
 }
 
 function getSubtemaLabel(subtema) {
@@ -156,24 +167,24 @@ async function loadTemas() {
         const data = await response.json();
 
         const container = document.getElementById('temas-container');
-        const subtemas = [...new Set(data.temas.map(t => t.subtema))];
+        const temas = [...new Set(data.temas.map(t => t.tema))];
 
-        container.innerHTML = subtemas.map(subtema => `
+        container.innerHTML = temas.map(tema => `
             <label class="checkbox-item">
-                <input type="checkbox" value="${subtema}" checked>
-                ${getSubtemaLabel(subtema)}
+                <input type="checkbox" value="${tema}" checked>
+                ${getTemaLabel(tema)}
             </label>
         `).join('');
 
         // Update state when checkboxes change
         container.addEventListener('change', () => {
-            state.selectedSubtemas = Array.from(
+            state.selectedTemas = Array.from(
                 container.querySelectorAll('input:checked')
             ).map(cb => cb.value);
         });
 
         // Initialize state
-        state.selectedSubtemas = subtemas;
+        state.selectedTemas = temas;
 
     } catch (error) {
         console.error('Error loading temas:', error);
@@ -269,7 +280,7 @@ async function startQuiz() {
         n_questions: state.nQuestions,
         modo: state.modo,
         ratio_mcq: state.ratioMcq,
-        subtemas: state.selectedSubtemas.length > 0 ? state.selectedSubtemas : null
+        temas: state.selectedTemas.length > 0 ? state.selectedTemas : null
     };
 
     try {
@@ -319,10 +330,10 @@ function showQuestion() {
     document.getElementById('progress-fill').style.width = progress + '%';
 
     // Update question meta with styled badges
-    const subtemaEl = document.getElementById('q-subtema');
+    const temaEl = document.getElementById('q-subtema');
     const formatoEl = document.getElementById('q-formato');
 
-    subtemaEl.textContent = getSubtemaLabel(q.subtema);
+    temaEl.textContent = getTemaLabel(q.tema);
     formatoEl.textContent = q.formato === 'mcq' ? 'Respuesta múltiple' : 'Respuesta abierta';
     formatoEl.className = 'badge ' + (q.formato === 'mcq' ? 'mcq' : 'abierta');
 
@@ -563,16 +574,16 @@ function showSummary(summary) {
             `;
         }).join('');
 
-    // By subtema
-    const bySubtema = document.getElementById('by-subtema');
-    bySubtema.innerHTML = Object.entries(summary.by_subtema)
+    // By tema
+    const byTema = document.getElementById('by-subtema');
+    byTema.innerHTML = Object.entries(summary.by_tema || summary.by_subtema)
         .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))
-        .map(([subtema, data]) => {
+        .map(([tema, data]) => {
             const pct = Math.round((data.correct / data.total) * 100);
             const cls = pct >= 70 ? 'good' : pct >= 50 ? 'medium' : 'bad';
             return `
                 <div class="summary-row">
-                    <span class="label">${getSubtemaLabel(subtema)}</span>
+                    <span class="label">${getTemaLabel(tema)}</span>
                     <span class="value ${cls}">${data.correct}/${data.total} (${pct}%)</span>
                 </div>
             `;
