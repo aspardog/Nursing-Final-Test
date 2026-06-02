@@ -1025,6 +1025,619 @@ DISTRACTORES = {
         "Capacidad normal para realizar calculos.",
         "Habilidad superior para las matematicas."
     ],
+
+    # ===== URGENCIAS: ARRITMIAS DX (IDs 210-222) =====
+    210: [
+        "Fibrilacion auricular.",
+        "Taquicardia supraventricular paroxistica.",
+        "Bloqueo AV de segundo grado."
+    ],
+    211: [
+        "Ritmo irregular, onda P visible (normal) y QRS ancho.",
+        "Ritmo irregular, onda P no visible (sustituida por ondas f) y QRS angosto.",
+        "Ritmo regular, onda P picuda y QRS angosto con intervalo PR corto."
+    ],
+    212: [
+        "Flutter auricular.",
+        "Taquicardia sinusal.",
+        "Bloqueo AV de primer grado."
+    ],
+    213: [
+        "El flutter tiene ondas f (fibrilatorias); la fibrilacion auricular tiene ondas F en serrucho.",
+        "Ambas tienen ritmo regular; se diferencian por la frecuencia auricular.",
+        "El flutter tiene QRS ancho; la fibrilacion auricular tiene QRS angosto."
+    ],
+    214: [
+        "Bloqueo AV de segundo grado Mobitz I.",
+        "Bloqueo AV de tercer grado.",
+        "Bradicardia sinusal."
+    ],
+    215: [
+        "P-R <0,12 s (acortado y variable); algunas P no conducen a QRS.",
+        "P-R normal (0,12-0,20 s); todas las P conducen a QRS.",
+        "P-R variable; el intervalo se alarga progresivamente antes de una P bloqueada."
+    ],
+    216: [
+        "Bloqueo AV de primer grado.",
+        "Bloqueo AV de tercer grado.",
+        "Bloqueo AV de segundo grado Mobitz II."
+    ],
+    217: [
+        "Bloqueo AV de primer grado.",
+        "Bloqueo AV de segundo grado Mobitz I (Wenckebach).",
+        "Bloqueo AV de tercer grado."
+    ],
+    218: [
+        "Mobitz I: el P-R permanece constante y la P se bloquea de forma subita. Mobitz II: el P-R se alarga progresivamente antes de la P bloqueada.",
+        "Mobitz I: tiene disociacion AV completa. Mobitz II: tiene P-R prolongado y constante.",
+        "Mobitz I y Mobitz II son sinonimos para el mismo tipo de bloqueo."
+    ],
+    219: [
+        "Taquicardia ventricular monomorfica.",
+        "Flutter ventricular.",
+        "Taquicardia supraventricular con aberrancia."
+    ],
+    220: [
+        "Generalmente con pulso; manejo: cardioversion.",
+        "Generalmente sin pulso; manejo: atropina.",
+        "Siempre con pulso; manejo: adenosina."
+    ],
+    221: [
+        "Fibrilacion ventricular.",
+        "Taquicardia ventricular polimorfica.",
+        "Flutter auricular con conduccion aberrante."
+    ],
+    222: [
+        "Con pulso: desfibrilar. Sin pulso: cardioversion.",
+        "Con pulso: adenosina. Sin pulso: amiodarona.",
+        "Con pulso: atropina. Sin pulso: adrenalina."
+    ],
+
+    # ===== URGENCIAS: ARRITMIAS MANEJO (IDs 223-231) =====
+    223: [
+        "Amiodarona, bolo de 150 mg en 100 cc de DAD.",
+        "Atropina, bolo de 1 mg en 10 cc de SSN.",
+        "Metoprolol, bolo de 5 mg en 20 cc de SSN."
+    ],
+    224: [
+        "6 mg, seguida de 10 cc de SSN.",
+        "18 mg, seguida de 20 cc de SSN.",
+        "24 mg, seguida de 30 cc de SSN."
+    ],
+    225: [
+        "Amiodarona en bolo de 150 mg, maximo 450 mg.",
+        "Adenosina en bolos de 12 mg, maximo 36 mg.",
+        "Atropina en bolos de 0,5 mg, maximo 3 mg."
+    ],
+    226: [
+        "Carga de 300-600 mg, diluir y pasar en 10 min; infusion de 0,5 mg/min.",
+        "Carga de 50-100 mg, diluir y pasar en 5 min; infusion de 2 mg/min.",
+        "Carga de 75-150 mg, diluir y pasar en 30 min; infusion de 0,25 mg/min."
+    ],
+    227: [
+        "Adenosina.",
+        "Desfibrilacion.",
+        "Amiodarona."
+    ],
+    228: [
+        "Adenosina, bolo de 6 mg cada 1-2 min, maximo 18 mg.",
+        "Adrenalina, bolo de 0,5 mg cada 3-5 min, maximo 2 mg.",
+        "Amiodarona, bolo de 150 mg cada 10 min, maximo 450 mg."
+    ],
+    229: [
+        "2-5 mcg/kg/min, ajustar segun el estado del paciente.",
+        "5-10 mcg/kg/min, dosis fija sin ajuste.",
+        "0,5-1 mcg/kg/min, ajustar segun la frecuencia cardiaca."
+    ],
+    230: [
+        "1 mcg/min, ajustar segun el estado del paciente.",
+        "5 mcg/min, dosis fija sin ajuste.",
+        "0,1 mcg/min, ajustar segun la presion arterial."
+    ],
+    231: [
+        "Bloqueo AV de primer grado, bradicardia sinusal y ritmo de escape auricular.",
+        "Bloqueo AV de segundo grado Mobitz I, taquicardia sinusal y ritmo auricular ectopico.",
+        "Fibrilacion auricular lenta, flutter auricular y taquicardia auricular multifocal."
+    ],
+
+    # ===== URGENCIAS: IAM (IDs 232-240) =====
+    232: [
+        "Onda Q patologica.",
+        "Descenso del segmento ST.",
+        "Onda P picuda."
+    ],
+    233: [
+        "Onda T simetrica (invertida y simetrica).",
+        "Descenso del segmento ST.",
+        "Onda Q patologica."
+    ],
+    234: [
+        "Ascenso (elevacion) del segmento ST.",
+        "Onda T simetrica invertida.",
+        "Ensanchamiento del QRS."
+    ],
+    235: [
+        "Derivaciones V1-V4; arteria circunfleja izquierda.",
+        "Derivaciones DI, aVL; arteria coronaria derecha.",
+        "Derivaciones V5-V6; arteria descendente posterior."
+    ],
+    236: [
+        "DII, DIII y aVF; arteria circunfleja izquierda.",
+        "V1-V4; arteria coronaria derecha.",
+        "DI, aVL; arteria descendente anterior izquierda."
+    ],
+    237: [
+        "V1-V2; arteria coronaria derecha.",
+        "DII, DIII, aVF; arteria circunfleja izquierda.",
+        "V5-V6; arteria marginal obtusa."
+    ],
+    238: [
+        "V1-V3; arteria circunfleja izquierda y rama marginal.",
+        "DII, DIII, aVF; arteria descendente anterior izquierda.",
+        "aVL-DI; arteria coronaria derecha."
+    ],
+    239: [
+        "V3-V4; arteria descendente posterior y rama septal.",
+        "DII, DIII, aVF; arteria descendente anterior izquierda.",
+        "V1-V2; arteria coronaria derecha."
+    ],
+    240: [
+        "Trombolizar dentro de la ventana (12-24 h), siempre que la TA sea <200/120.",
+        "Angioplastia primaria sin importar la TA ni el tiempo de evolucion.",
+        "Anticoagulacion con heparina, sin limite de TA ni de tiempo."
+    ],
+
+    # ===== URGENCIAS: ACV (IDs 241-247) =====
+    241: [
+        "6 horas.",
+        "12 horas.",
+        "1 hora."
+    ],
+    242: [
+        "Activar el codigo ACV, glucometria, oxigenoterapia, resonancia magnetica y valoracion cardiologica.",
+        "Trombolizar inmediatamente, glucometria, acceso IV y observacion.",
+        "TAC de craneo, puncion lumbar, oxigenoterapia y valoracion neurologica."
+    ],
+    243: [
+        "Anticoagular (dentro de la ventana de tiempo).",
+        "Observacion y manejo conservador.",
+        "Cirugia de emergencia."
+    ],
+    244: [
+        "Trombolizar con rtPA y luego observacion.",
+        "Anticoagulacion sistemica y rehabilitacion temprana.",
+        "Craniectomia descompresiva de urgencia."
+    ],
+    245: [
+        "TA <200/120 para trombolizar; si se superan esas cifras, administrar metoprolol.",
+        "TA <160/100 para trombolizar; si se superan esas cifras, administrar enalapril.",
+        "TA <140/90 para trombolizar; si se superan esas cifras, administrar amlodipino."
+    ],
+    246: [
+        "1,5 mg/kg.",
+        "0,6 mg/kg.",
+        "0,3 mg/kg."
+    ],
+    247: [
+        "20% de la dosis total en bolo y el 80% restante en infusion durante 30 minutos.",
+        "5% de la dosis total en bolo y el 95% restante en infusion durante 2 horas.",
+        "50% de la dosis total en bolo y el 50% restante en infusion durante 30 minutos."
+    ],
+
+    # ===== URGENCIAS: METABOLICAS (IDs 248-261) =====
+    248: [
+        "Diabetes tipo 2.",
+        "Diabetes gestacional.",
+        "Prediabetes."
+    ],
+    249: [
+        "Diabetes tipo 1.",
+        "Diabetes gestacional.",
+        "Diabetes tipo MODY."
+    ],
+    250: [
+        "100-200 mg/dl.",
+        "600-800 mg/dl.",
+        "<100 mg/dl."
+    ],
+    251: [
+        "250-600 mg/dl.",
+        "<200 mg/dl.",
+        "100-250 mg/dl."
+    ],
+    252: [
+        "Cuerpos cetonicos ausentes o leves.",
+        "Cuerpos cetonicos + (ligeramente elevados).",
+        "Cuerpos cetonicos negativos."
+    ],
+    253: [
+        "Cuerpos cetonicos +++ (marcadamente elevados).",
+        "Cuerpos cetonicos moderados (++).",
+        "Cuerpos cetonicos ausentes."
+    ],
+    254: [
+        "pH >7,35 y HCO3 >22 mEq/l (alcalosis metabolica).",
+        "pH normal (7,35-7,45) y HCO3 normal (22-26 mEq/l).",
+        "pH <7,25 y HCO3 <10 mEq/l (acidosis metabolica severa)."
+    ],
+    255: [
+        "Anion GAP <8.",
+        "Anion GAP normal (8-12).",
+        "Anion GAP negativo."
+    ],
+    256: [
+        "Hiperosmolaridad <280 mOsm/kg.",
+        "Osmolaridad normal (280-295 mOsm/kg).",
+        "Hipoosmolaridad <260 mOsm/kg."
+    ],
+    257: [
+        "Hipoventilacion con retencion de CO2 (respiracion de Cheyne-Stokes).",
+        "Respiracion normal sin alteraciones del patron.",
+        "Bradipnea con periodos de apnea (respiracion de Biot)."
+    ],
+    258: [
+        "Hiperactividad motora y agitacion psicomotriz.",
+        "Respiracion de Kussmaul con acidosis.",
+        "Deshidratacion leve sin compromiso neurologico."
+    ],
+    259: [
+        "Exceso de insulina → hipoglicemia → aumento de la glucogenolisis → hiperglicemia de rebote → diuresis osmotica.",
+        "Resistencia a la insulina → hiperglicemia leve → glucosuria → deshidratacion moderada → cetogenesis minima.",
+        "Deficit de glucagon → disminucion de la gluconeogenesis → hipoglicemia → liberacion de cortisol → hiperglicemia."
+    ],
+    260: [
+        "Hipoglicemia severa → disminucion de la osmolaridad → edema cerebral → convulsiones.",
+        "Cetoacidosis → acumulacion de cetonas → acidosis metabolica → coma diabetico.",
+        "Deficit de insulina → lipogenesis aumentada → acumulacion de trigliceridos → esteatosis hepatica."
+    ],
+    261: [
+        "CAD: cetonas ausentes sin acidosis. EH: cuerpos cetonicos +++ con acidosis severa (pH <7,1).",
+        "CAD y EH son sinonimos; ambos tienen cetonas elevadas y acidosis similar.",
+        "CAD: hiperosmolaridad >350 mOsm/kg. EH: osmolaridad normal con cetonas elevadas."
+    ],
+
+    # ===== SALAS DE CIRUGIA: CALCULOS (IDs 262-275) =====
+    262: [
+        "Se multiplica la cantidad total por el volumen: 500 mcg x 10 ml = 5000 mcg/ml.",
+        "Se resta la cantidad total del volumen: 500 mcg - 10 ml = 490 mcg/ml.",
+        "Se suma la cantidad total al volumen: 500 mcg + 10 ml = 510 mcg/ml."
+    ],
+    263: [
+        "200 mcg x 50 mcg/cc = 10000 cc.",
+        "200 mcg + 50 mcg/cc = 250 cc.",
+        "50 mcg/cc / 200 mcg = 0,25 cc."
+    ],
+    264: [
+        "X% = X miligramos por cada 100 ml. Ej.: 100% = 100 mg/100 ml.",
+        "X% = X microgramos por cada 1000 ml. Ej.: 100% = 100 mcg/1000 ml.",
+        "X% = X gramos por cada 10 ml. Ej.: 100% = 100 g/10 ml."
+    ],
+    265: [
+        "Induccion 0,2 mcg/kg/min; mantenimiento 0,4 mcg/kg/min.",
+        "Induccion 1,0 mcg/kg/min; mantenimiento 0,5 mcg/kg/min.",
+        "Induccion 0,1 mcg/kg/min; mantenimiento 0,1 mcg/kg/min."
+    ],
+    266: [
+        "cc/h = (dosis x peso x cc totales) / mcg totales = (0,4 x 66 x 100) / 2000 = 1,32 cc/h.",
+        "cc/h = (dosis + 60 + peso) x cc totales / mcg totales = (0,4 + 60 + 66) x 100 / 2000 = 6,32 cc/h.",
+        "cc/h = dosis x peso / (60 x mcg totales) = 0,4 x 66 / (60 x 2000) = 0,00022 cc/h."
+    ],
+    267: [
+        "cc/h = (0,4 x 90 x 100) / 2000 = 1,8 cc/h.",
+        "cc/h = (0,4 + 60 + 90) x 100 / 2000 = 7,52 cc/h.",
+        "cc/h = (0,4 x 60 x 90) / (100 x 2000) = 0,0108 cc/h."
+    ],
+    268: [
+        "50 mg x 10 mg/cc = 500 cc.",
+        "50 mg + 10 mg/cc = 60 cc.",
+        "10 mg/cc / 50 mg = 0,2 cc."
+    ],
+    269: [
+        "40 mg x 10 mg/cc = 400 cc.",
+        "40 mg + 10 mg/cc = 50 cc.",
+        "10 mg/cc / 40 mg = 0,25 cc."
+    ],
+    270: [
+        "3 ampollas de neostigmina + 2 ampollas de atropina.",
+        "10 ampollas de neostigmina + 1 ampolla de glicopirrolato.",
+        "2 ampollas de sugammadex + 1 ampolla de atropina."
+    ],
+    271: [
+        "Ondansetron 8 mg, neostigmina 5 mg, etomidato 20 mg, propofol 200 mg y rocuronio 40 mg.",
+        "Ondansetron 2 mg, neostigmina 1,25 mg, etomidato 5 mg, propofol 50 mg y rocuronio 10 mg.",
+        "Ondansetron 16 mg, neostigmina 10 mg, etomidato 40 mg, propofol 400 mg y rocuronio 80 mg."
+    ],
+    272: [
+        "General, regional, local y sedacion consciente.",
+        "Topica, infiltrativa, troncular y raquidea.",
+        "Inhalatoria, intravenosa, intramuscular y subcutanea."
+    ],
+
+    # ===== SALAS DE CIRUGIA: HERIDAS (IDs 273-279) =====
+    273: [
+        "Apertura de viscera hueca controlada, sin proceso inflamatorio, tecnica aseptica perfecta. ISO 3-11%.",
+        "Apertura no controlada de viscera con derrame, proceso inflamatorio, mala tecnica. ISO 10-17%.",
+        "Contaminacion fecal, proceso inflamatorio severo, perdida de vitalidad tisular. ISO >27%."
+    ],
+    274: [
+        "No hay apertura de viscera hueca, sin proceso inflamatorio, tecnica aseptica perfecta. ISO 1-5%.",
+        "Apertura controlada de viscera hueca con minimo derrame. ISO 5-10%.",
+        "Transgresion mayor de la tecnica con contaminacion. ISO 15-20%."
+    ],
+    275: [
+        "Apertura controlada de viscera hueca, sin proceso inflamatorio, tecnica perfecta. ISO 1-5%.",
+        "No hay apertura de viscera hueca, proceso inflamatorio leve. ISO 5-8%.",
+        "Contaminacion fecal minima, proceso inflamatorio moderado. ISO 15-20%."
+    ],
+    276: [
+        "Apertura controlada de viscera hueca sin derrame de contenido y sin proceso inflamatorio. ISO 1-5%.",
+        "No hay apertura de viscera, proceso inflamatorio presente, tecnica aseptica imperfecta. ISO 5-10%.",
+        "Contaminacion fecal, proceso inflamatorio severo, perdida de vitalidad tisular. ISO >27%."
+    ],
+    277: [
+        "La tipo I abre viscera hueca de forma controlada; la tipo II NO abre viscera hueca.",
+        "La tipo I y la tipo II son sinonimos que describen heridas sin apertura de viscera.",
+        "La tipo I tiene contaminacion fecal; la tipo II tiene apertura controlada de viscera."
+    ],
+    278: [
+        "Contaminada (10-17%) < Limpia contaminada (3-11%) < Limpia (1-5%) < Sucia (>27%).",
+        "Sucia (>27%) < Contaminada (10-17%) < Limpia (1-5%) < Limpia contaminada (3-11%).",
+        "Limpia contaminada (3-11%) < Limpia (1-5%) < Sucia (>27%) < Contaminada (10-17%)."
+    ],
+
+    # ===== SALAS DE CIRUGIA: ASA (IDs 279-284) =====
+    279: [
+        "Paciente con enfermedad sistemica leve sin limitacion funcional: hipertension controlada.",
+        "Paciente con enfermedad cronica compensada: diabetes sin complicaciones.",
+        "Paciente moribundo que no se espera sobreviva a la cirugia."
+    ],
+    280: [
+        "Paciente normal sano: no fumador, sin consumo de alcohol.",
+        "Enfermedad sistemica severa con limitacion funcional sustancial.",
+        "Paciente moribundo con ruptura de aneurisma."
+    ],
+    281: [
+        "Enfermedad sistemica moderada con limitacion funcional moderada.",
+        "Paciente normal sano sin limitacion funcional.",
+        "Enfermedad sistemica severa que amenaza la vida."
+    ],
+    282: [
+        "Enfermedad sistemica severa con limitacion funcional sustancial.",
+        "Enfermedad sistemica moderada con limitacion funcional moderada.",
+        "Paciente moribundo que no se espera sobreviva a la cirugia."
+    ],
+    283: [
+        "Enfermedad sistemica severa que amenaza la vida: IAM reciente, sepsis.",
+        "Paciente moribundo con ruptura de aneurisma y sangrado masivo.",
+        "Paciente con muerte cerebral cuyos organos seran removidos para donacion."
+    ],
+    284: [
+        "Paciente moribundo en quien no se espera que sobreviva a la cirugia.",
+        "Paciente con enfermedad sistemica severa que amenaza la vida.",
+        "Paciente con enfermedad sistemica severa con limitacion funcional sustancial."
+    ],
+
+    # ===== SALAS DE CIRUGIA: VALORACION (IDs 285-290) =====
+    285: [
+        "Paciente solo, sin tomar signos vitales, con accesorios y esmalte, sin consentimientos.",
+        "Paciente con acompanante, sin signos vitales, con protesis, sin ayuno ni lavado.",
+        "Solo valoracion por anestesiologia, sin verificar ayuno ni consentimientos."
+    ],
+    286: [
+        "30 minutos antes de la cirugia: ampicilina/sulbactam 3 g o vancomicina 1 g.",
+        "2 horas antes de la cirugia: metronidazol 500 mg o ciprofloxacino 400 mg.",
+        "Inmediatamente antes de la incision: penicilina G 4 millones UI."
+    ],
+    287: [
+        "Parada de seguridad en silencio, no llenar el tablero, profilaxis antibiotica durante cirugia.",
+        "Solo anotar los insumos, sin parada de seguridad ni profilaxis.",
+        "Profilaxis antibiotica 2 h despues de la cirugia, sin parada de seguridad."
+    ],
+    288: [
+        "Escala de Glasgow, tolerancia al ejercicio, patron urinario y monitorizacion de glucosa.",
+        "Escala de Ramsay, tolerancia a liquidos, patron intestinal y monitorizacion de temperatura.",
+        "Escala de Norton, tolerancia al decubito, patron respiratorio y monitorizacion de presion."
+    ],
+    289: [
+        "Temperatura, frecuencia respiratoria, dolor, nauseas y estado de la piel.",
+        "Presion arterial, frecuencia cardiaca, nivel de glucosa, diuresis y estado mental.",
+        "Motilidad intestinal, tolerancia oral, dolor abdominal, fiebre y herida quirurgica."
+    ],
+    290: [
+        "Vision, audicion, olfato, gusto y sensibilidad tactil.",
+        "Temperatura, dolor, presion, equilibrio y coordinacion.",
+        "Memoria, orientacion, lenguaje, calculo y juicio."
+    ],
+
+    # ===== SALAS DE CIRUGIA: VIA AEREA Y AREAS (IDs 291-295) =====
+    291: [
+        "Para valorar el nivel de sedacion del paciente en recuperacion postanestesica.",
+        "Para evaluar el riesgo de broncoaspiracion durante la induccion.",
+        "Para determinar la dosis de relajante muscular necesaria."
+    ],
+    292: [
+        "Segunda zona de restriccion; incluye la sala de operaciones. Se accede con uniforme esteril.",
+        "Zona sin restriccion; incluye cafeteria y salas de espera. Se accede con ropa de calle.",
+        "Tercera zona de restriccion; incluye la central de esterilizacion. Solo personal autorizado."
+    ],
+    293: [
+        "Requiere portar bata clinica. Incluye la sala de operaciones, central de esterilizacion y oficinas.",
+        "No requiere uniforme especial. Incluye vestidores, banos y area de admision quirurgica.",
+        "Requiere portar gorro y tapabocas. Incluye sala de recuperacion y cuarto de anestesia."
+    ],
+    294: [
+        "Area de restriccion intermedia donde se encuentran los vestidores y admision quirurgica.",
+        "Area de menor restriccion que funciona como zona de transito para visitantes.",
+        "Area de alta restriccion donde se realiza la esterilizacion de instrumentos."
+    ],
+    295: [
+        "Blanca (menor restriccion, zona de transito) → Gris (restriccion media) → Negra (mayor restriccion, sala de operaciones).",
+        "Gris (menor restriccion, admision) → Negra (restriccion media) → Blanca (mayor restriccion, sala de operaciones).",
+        "Negra (menor restriccion, vestidores) → Blanca (restriccion media) → Gris (mayor restriccion, sala de operaciones)."
+    ],
+
+    # ===== ARRITMIAS: TAQUICARDIAS SUPRAVENTRICULARES (IDs 296-309) =====
+    296: [
+        "Patologica; FC 60-100 lpm; QRS ancho; ausencia de onda P; conducta: cardioversion.",
+        "Anormal; FC 150-200 lpm; QRS angosto; onda P invertida; conducta: adenosina.",
+        "Compensatoria; FC 40-60 lpm; QRS normal; onda P ausente; conducta: marcapasos."
+    ],
+    297: [
+        "La taquicardia sinusal muestra solo 1 montana entre R-R. La supraventricular muestra 2 montanas.",
+        "La taquicardia sinusal tiene QRS ancho. La supraventricular tiene QRS angosto.",
+        "La taquicardia sinusal no tiene onda P. La supraventricular si tiene onda P."
+    ],
+    298: [
+        "Ritmo irregular; presenta onda P invertida; muestra 2 montanas entre R-R.",
+        "Ritmo regular; presenta onda P normal; muestra ondas f entre R-R.",
+        "Ritmo irregular; ausencia de onda P; muestra ondas F en serrucho."
+    ],
+    299: [
+        "Ritmo regular; QRS ancho; FC 60-100 lpm; se evidencia onda P; presenta ondas F.",
+        "Ritmo irregular; QRS estrecho; FC 100-150 lpm; no se evidencia onda P; presenta ondas delta.",
+        "Ritmo regular; QRS angosto; FC 300-400 lpm; se evidencia onda P invertida; sin ondas f."
+    ],
+    300: [
+        "Siempre es regular; presenta onda P normal.",
+        "Siempre es irregular; presenta ondas f (fibrilatorias).",
+        "Siempre es regular; presenta onda T invertida."
+    ],
+    301: [
+        "Se origina en el nodo sinusal; la onda P es positiva y aparece antes del QRS.",
+        "Se origina en el haz de His; no hay onda P visible en el trazado.",
+        "Se origina en las fibras de Purkinje; la onda P es bifasica."
+    ],
+    302: [
+        "Taquicardia sinusal (sin P, con ondas f), bradicardia sinusal (ondas F en serrucho) y ritmo nodal (P normal).",
+        "TSV (P normal), fibrilacion auricular (P invertida), flutter (sin ondas F) y taquicardia nodal (P visible).",
+        "Solo la fibrilacion auricular no muestra onda P normal; las demas si la tienen."
+    ],
+    303: [
+        "La taquicardia sinusal. La TSV, la fibrilacion auricular y el flutter son regulares.",
+        "El flutter auricular. La taquicardia sinusal, la TSV y la nodal son irregulares.",
+        "La taquicardia nodal. Las demas taquicardias supraventriculares son regulares."
+    ],
+
+    # ===== ARRITMIAS: TAQUICARDIAS VENTRICULARES (IDs 304-308) =====
+    304: [
+        "Se presenta onda P; FC 60-100 lpm; QRS angosto (<0,12 s).",
+        "Se presenta onda P invertida; FC 100-150 lpm; QRS normal.",
+        "No hay onda P ni QRS identificables; el ritmo es caotico."
+    ],
+    305: [
+        "Monomorfica: la forma de los complejos varia. Polimorfica: todos los complejos tienen la misma forma.",
+        "Monomorfica: ocurre con pulso. Polimorfica: siempre es sin pulso.",
+        "No hay diferencia visual; se diferencian solo por la frecuencia cardiaca."
+    ],
+    306: [
+        "Es un ritmo regular; se evidencia claramente el complejo QRS ancho.",
+        "Es un ritmo irregular pero organizado; el QRS es angosto.",
+        "Es un ritmo lento; el QRS es normal con ondas P visibles."
+    ],
+    307: [
+        "Onda ancha/gruesa = fibrilacion ventricular de mayor tiempo. Onda delgada/fina = fibrilacion reciente.",
+        "No hay diferencia; ambas representan el mismo estado de la fibrilacion.",
+        "Onda ancha = paciente con buen pronostico. Onda fina = paciente con mal pronostico."
+    ],
+
+    # ===== ARRITMIAS: BRADIARRITMIAS Y BLOQUEOS (IDs 308-312) =====
+    308: [
+        "Patologica; FC 30-40 lpm; QRS ancho; ausencia de onda P.",
+        "Respuesta a taquiarritmia; FC 100-120 lpm; QRS angosto; onda P presente.",
+        "Respuesta a hipoxia; FC 70-80 lpm; QRS normal; onda P bifasica."
+    ],
+    309: [
+        "Segmento PR acortado: mide menos de 3 mm o <0,12 s; ritmo irregular.",
+        "Segmento PR normal: mide entre 3-5 mm o 0,12-0,20 s; ritmo regular.",
+        "Segmento PR ausente: no se identifica la onda P; ritmo regular."
+    ],
+    310: [
+        "El PR se mantiene constante y una onda P no conduce de forma subita.",
+        "El PR se acorta progresivamente hasta que todas las P conducen.",
+        "El PR es normal y todas las ondas P conducen sin interrupcion."
+    ],
+    311: [
+        "El PR mide mas de 0,20 s (prolongado y constante); todas las ondas P conducen.",
+        "El PR se alarga progresivamente antes de una P bloqueada.",
+        "El PR es variable y las ondas P tienen diferentes morfologias."
+    ],
+    312: [
+        "Auriculas y ventriculos estan sincronizados; su conduccion electrica es coherente (asociacion AV).",
+        "Las auriculas laten mas rapido que los ventriculos pero estan coordinados.",
+        "Solo los ventriculos laten; las auriculas estan en asistolia completa."
+    ],
+
+    # ===== MEZCLAS Y DILUCIONES (IDs 313-326) =====
+    313: [
+        "La dosis mas alta del rango.",
+        "El promedio del rango.",
+        "La dosis intermedia del rango."
+    ],
+    314: [
+        "1,5 g = 1500 mg x 4 ml = 6000 mg/ml.",
+        "1,5 g = 1500 mg + 4 ml = 1504 mg/ml.",
+        "1,5 g = 150 mg / 4 ml = 37,5 mg/ml."
+    ],
+    315: [
+        "750 mg x 375 mg/ml = 281250 ml.",
+        "750 mg + 375 mg/ml = 1125 ml.",
+        "375 mg/ml / 750 mg = 0,5 ml."
+    ],
+    316: [
+        "Solo alteplasa/rtPA (la PA de 165/120 no supera el limite de 180/110).",
+        "Solo labetalol (la trombolisis esta contraindicada en ACV isquemico).",
+        "Nitroglicerina y aspirina (el ACV isquemico se maneja como un IAM)."
+    ],
+    317: [
+        "Triage I (resucitacion): requiere atencion inmediata por riesgo vital inminente.",
+        "Triage III (urgente): requiere atencion en los proximos 30-60 minutos.",
+        "Triage IV (menos urgente): puede esperar hasta 2 horas para ser atendido."
+    ],
+    318: [
+        "Total = 0,9 x 95 = 85,5 mg. Bolo (20%) = 17,1 mg en 2 min. Infusion (80%) = 68,4 mg en 2 h.",
+        "Total = 1,5 x 95 = 142,5 mg. Bolo (5%) = 7,1 mg en 30 s. Infusion (95%) = 135,4 mg en 30 min.",
+        "Total = 0,6 x 95 = 57 mg. Bolo (50%) = 28,5 mg en 5 min. Infusion (50%) = 28,5 mg en 3 h."
+    ],
+    319: [
+        "85,5 mg x 1 mg/ml = 85,5 ml en 30 min ≈ 171 ml/h.",
+        "76,95 mg + 1 mg/ml = 77,95 ml en 2 h ≈ 39 ml/h.",
+        "76,95 mg / 2 mg/ml = 38,5 ml en 1 h ≈ 38,5 ml/h."
+    ],
+    320: [
+        "Diluir 250 mg de labetalol en SSN hasta completar 250 ml → concentracion 1 mg/ml.",
+        "Diluir 1000 mg de labetalol en SSN hasta completar 100 ml → concentracion 10 mg/ml.",
+        "Diluir 100 mg de labetalol en SSN hasta completar 500 ml → concentracion 0,2 mg/ml."
+    ],
+    321: [
+        "Concentracion = 3 mg/100 ml = 3 mcg/ml. Dosis = 5 x 68 = 340 mcg/h. ml/h = 340 / 3 = 113,3 ml/h.",
+        "Concentracion = 3 mg/100 ml = 300 mcg/ml. Dosis = 5 x 68 = 340 mcg/h. ml/h = 340 / 300 = 1,13 ml/h.",
+        "Concentracion = 3 mg/100 ml = 0,3 mcg/ml. Dosis = 5 x 68 = 340 mcg/h. ml/h = 340 / 0,3 = 1133 ml/h."
+    ],
+    322: [
+        "3 mg / 0,5 mg = 6 ampollas (6 x 10 ml = 60 ml) + 100 ml de SSN para completar 160 ml.",
+        "3 mg x 0,5 mg = 1,5 ampollas (15 ml) + 85 ml de SSN para completar 100 ml.",
+        "3 mg + 0,5 mg = 3,5 ampollas (35 ml) + 65 ml de SSN para completar 100 ml."
+    ],
+    323: [
+        "Concentracion = 2 g/100 ml = 200 mg/ml. Dosis = 0,4 x 76 = 30,4 mg/h. ml/h = 30,4 / 200 = 0,152 ml/h.",
+        "Concentracion = 2 g/100 ml = 2 mg/ml. Dosis = 0,4 x 76 = 30,4 mg/h. ml/h = 30,4 / 2 = 15,2 ml/h.",
+        "Concentracion = 2 g/100 ml = 0,2 mg/ml. Dosis = 0,4 x 76 = 30,4 mg/h. ml/h = 30,4 / 0,2 = 152 ml/h."
+    ],
+    324: [
+        "2000 mg / 500 mg = 4 ampollas (4 x 10 ml = 40 ml) + 100 ml de SSN para completar 140 ml.",
+        "2000 mg x 500 mg = 1000000, usar 2 ampollas + 80 ml de SSN.",
+        "2000 mg + 500 mg = 2500 mg, usar 5 ampollas + 50 ml de SSN."
+    ],
+    325: [
+        "Concentracion = 50 mg/500 ml = 1 mg/ml = 1000 mcg/ml. Dosis = 0,5 x 83 = 41,5 mcg/min. ml/h = 41,5 x 60 / 1000 = 2,49 ml/h.",
+        "Concentracion = 50 mg/500 ml = 0,01 mg/ml = 10 mcg/ml. Dosis = 0,5 x 83 = 41,5 mcg/min. ml/h = 41,5 x 60 / 10 = 249 ml/h.",
+        "Concentracion = 50 mg/500 ml = 10 mg/ml = 10000 mcg/ml. Dosis = 0,5 x 83 = 41,5 mcg/min. ml/h = 41,5 x 60 / 10000 = 0,249 ml/h."
+    ],
+    326: [
+        "50 mg / 50 mg = 1 ampolla (10 ml) + SSN hasta completar 100 ml.",
+        "50 mg x 50 mg = 2500, usar 50 ampollas + DAD 5%.",
+        "50 mg + 50 mg = 100 mg, usar 2 ampollas + DAD 5% hasta completar 1000 ml."
+    ],
 }
 
 

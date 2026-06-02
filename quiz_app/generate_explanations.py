@@ -441,6 +441,314 @@ EXPLICACIONES = {
     208: "La discalculia es dificultad para el calculo, puede ser del desarrollo (como dislexia para numeros) o adquirida por lesion cerebral, tipicamente parietal.",
 
     209: "La acalculia es incapacidad total para calcular. Indica lesion de corteza parietal izquierda. Puede asociarse a otros signos del sindrome de Gerstmann.",
+
+    # ===== URGENCIAS: ARRITMIAS DX (IDs 210-222) =====
+    210: "El flutter auricular se reconoce por las ondas F en serrucho (dientes de sierra) a frecuencia de 250-350/min. La conduccion AV suele ser 2:1 o 4:1, dando frecuencias ventriculares regulares. Es mas organizado que la fibrilacion auricular.",
+
+    211: "En el flutter auricular el QRS es angosto porque la activacion ventricular sigue la via normal. Las ondas F reemplazan a las P normales. El ritmo ventricular suele ser regular por la conduccion AV fija.",
+
+    212: "La fibrilacion auricular es la arritmia sostenida mas comun. Se caracteriza por actividad auricular caotica (ondas f) y respuesta ventricular irregular. Es factor de riesgo importante para ACV por formacion de trombos auriculares.",
+
+    213: "Esta distincion es clave: en el flutter el ritmo es regular (R-R constante) porque la conduccion AV es fija (2:1, 3:1, 4:1). En la fibrilacion auricular el R-R es irregular porque la conduccion AV es caotica.",
+
+    214: "El bloqueo AV de primer grado es el mas benigno. Todas las P conducen a QRS pero con retraso (PR >0.20s). No requiere tratamiento especifico pero puede progresar a bloqueos mayores.",
+
+    215: "En el bloqueo AV de primer grado el PR esta prolongado pero es constante. Es un retraso en la conduccion, no un bloqueo verdadero. Monitorizar por si progresa a Mobitz.",
+
+    216: "El Mobitz I (Wenckebach) muestra alargamiento progresivo del PR hasta que una P no conduce. Es mas benigno que el Mobitz II porque indica patologia del nodo AV, que tiene mejor pronostico.",
+
+    217: "El Mobitz II es mas peligroso que el Mobitz I. El PR es constante y de repente una P no conduce. Indica patologia infranodal (His-Purkinje) con riesgo de progresion a bloqueo completo. A menudo requiere marcapasos.",
+
+    218: "Distinguir Mobitz I de II es clinicamente crucial. Mobitz I: el PR se alarga gradualmente (fenomeno de Wenckebach). Mobitz II: el PR es constante y el bloqueo es subito. El II tiene peor pronostico y mas indicacion de marcapasos.",
+
+    219: "La fibrilacion ventricular es ritmo caotico sin gasto cardiaco efectivo. Es una emergencia que requiere desfibrilacion inmediata. El EKG muestra actividad desorganizada sin QRS identificables.",
+
+    220: "La fibrilacion ventricular casi siempre es sin pulso y es un ritmo de paro. La desfibrilacion es el unico tratamiento efectivo. Cada minuto de retraso reduce la supervivencia un 7-10%.",
+
+    221: "La taquicardia ventricular monomorfica tiene QRS anchos de morfologia constante. Los picos van en la misma direccion. Puede ser con o sin pulso, lo que determina el manejo.",
+
+    222: "En TV con pulso hay tiempo para cardioversion sincronizada o farmacos (amiodarona). Sin pulso es ritmo de paro y requiere desfibrilacion no sincronizada, igual que la fibrilacion ventricular.",
+
+    # ===== URGENCIAS: ARRITMIAS MANEJO (IDs 223-231) =====
+    223: "La adenosina es el farmaco de primera linea en taquicardia supraventricular estable. Actua bloqueando brevemente el nodo AV. Se administra en bolo rapido seguido de flush de SSN porque tiene vida media de segundos.",
+
+    224: "Si 6 mg de adenosina no funciona, se duplica la dosis a 12 mg. Puede repetirse una vez mas. Si no responde, considerar que no es TSV reentrante (quiza flutter o FA) o usar otros farmacos.",
+
+    225: "El metoprolol es segunda linea en TSV. Los betabloqueadores enlentecen el nodo AV. Se usan con precaucion en insuficiencia cardiaca y asma. La dosis se titula en bolos pequenos.",
+
+    226: "La amiodarona es antiarritmico de amplio espectro. La carga lenta (20 min) reduce efectos adversos como hipotension. Tiene multiples efectos secundarios con uso cronico (tiroides, pulmon, higado).",
+
+    227: "La TSV inestable (hipotension, angina, disnea severa, alteracion de conciencia) requiere cardioversion electrica inmediata. No hay tiempo para farmacos cuando el paciente esta descompensando.",
+
+    228: "La atropina bloquea el efecto vagal sobre el nodo sinusal, aumentando la frecuencia. Es primera linea en bradicardia sintomatica. El maximo de 3 mg evita efectos anticolinergicos excesivos.",
+
+    229: "La dopamina a dosis altas (10-20 mcg/kg/min) tiene efecto beta-1 predominante, aumentando frecuencia y contractilidad. Se usa en bradicardia cuando la atropina falla, como puente a marcapasos.",
+
+    230: "La adrenalina en bradicardia se usa a dosis bajas (cronotropicas). A 2 mcg/min predomina el efecto beta sobre el alfa. Se ajusta segun respuesta, buscando frecuencia y presion adecuadas.",
+
+    231: "Estas bradiarritmias severas tienen alto riesgo de asistolia. El Mobitz II progresa frecuentemente a bloqueo completo. El marcapasos transcutaneo es medida temporal mientras se coloca uno definitivo.",
+
+    # ===== URGENCIAS: IAM (IDs 232-240) =====
+    232: "La onda T simetrica e invertida indica isquemia (falta de flujo, celulas vivas pero sufriendo). Es reversible si se restaura el flujo. Puede preceder al IAM o persistir despues.",
+
+    233: "La elevacion del ST indica lesion (dano activo, celulas en proceso de muerte). Es el marcador de IAM con elevacion del ST (IAMCEST) que requiere reperfusion urgente.",
+
+    234: "La onda Q patologica indica necrosis (celulas muertas). Una vez establecida es permanente. Representa la 'cicatriz' electrica del infarto. No todas las Q son patologicas; deben cumplir criterios de profundidad y duracion.",
+
+    235: "Las derivaciones inferiores (DII, DIII, aVF) miran la pared inferior del corazon, irrigada por la coronaria derecha o circunfleja. El IAM inferior puede asociarse a bradicardia por compromiso del nodo.",
+
+    236: "Las derivaciones V1-V4 miran la pared anteroseptal, irrigada por la descendente anterior (DA). El IAM anterior suele ser mas grande y tiene peor pronostico que el inferior.",
+
+    237: "V3-V5 miran la pared anterior. La rama diagonal de la DA irriga esta zona. El compromiso anterior afecta la funcion sistolica del ventriculo izquierdo significativamente.",
+
+    238: "V5-V6 y las derivaciones laterales altas (I, aVL) miran la pared lateral. Puede haber compromiso de la circunfleja o diagonales. El patron EKG ayuda a predecir la arteria culpable.",
+
+    239: "Las derivaciones laterales altas (aVL, DI) miran la pared lateral alta. La circunfleja irriga esta zona. Los cambios reciprocos en derivaciones inferiores apoyan el diagnostico.",
+
+    240: "El IAMCEST requiere reperfusion urgente. La trombolisis es opcion cuando la angioplastia no esta disponible en <120 min. La TA <180/110 es requisito para evitar sangrado intracraneal.",
+
+    # ===== URGENCIAS: ACV (IDs 241-247) =====
+    241: "La ventana terapeutica del ACV isquemico es critica. Las guias actuales extienden la trombolisis IV hasta 4.5h en pacientes seleccionados. La trombectomia mecanica puede usarse hasta 24h en casos especificos.",
+
+    242: "Los primeros 20 minutos son para estabilizacion y diagnostico. La glucometria descarta hipoglicemia (que puede simular ACV). La TAC diferencia isquemico de hemorragico, cambiando totalmente el manejo.",
+
+    243: "El ACV isquemico se trata con trombolisis (rtPA) para disolver el coagulo. El hemorragico NO se tromboliza porque empeoraría el sangrado. Por eso la TAC urgente es obligatoria.",
+
+    244: "El ACV hemorragico requiere manejo en UCI, control estricto de TA y vigilancia de aumento de presion intracraneal. La terapia endovascular (embolizacion de aneurismas) puede ser necesaria.",
+
+    245: "La TA elevada en ACV isquemico se debe controlar antes de trombolizar para reducir riesgo de sangrado. El labetalol es de eleccion por su efecto alfa y beta combinado y por no aumentar la presion intracraneal.",
+
+    246: "La dosis de rtPA en ACV es 0.9 mg/kg (maximo 90 mg). Menor que en IAM porque el riesgo de sangrado intracraneal es mayor. La relacion riesgo/beneficio esta bien establecida.",
+
+    247: "El 10% en bolo inicia la trombolisis rapidamente. El 90% en infusion de 1 hora mantiene niveles terapeuticos. Esta distribucion optimiza la lisis del coagulo minimizando complicaciones hemorragicas.",
+
+    # ===== URGENCIAS: METABOLICAS (IDs 248-261) =====
+    248: "La cetoacidosis diabetica (CAD) es clasica de diabetes tipo 1 porque requiere deficiencia absoluta de insulina para producir cetogenesis masiva. En DM2 hay suficiente insulina para prevenir cetosis.",
+
+    249: "El estado hiperosmolar (EHH) es clasico de DM2, usualmente en ancianos. La insulina residual previene cetosis pero no la hiperglicemia extrema. La deshidratacion es mas severa que en CAD.",
+
+    250: "La CAD tiene glicemias de 250-600 mg/dl. Puede presentarse con glicemias relativamente bajas si el paciente no ha comido. Lo que la define es la cetosis y acidosis, no solo la hiperglicemia.",
+
+    251: "El EHH tiene glicemias >600 mg/dl, frecuentemente >1000. La osmolaridad extrema causa alteracion de conciencia severa. La correccion debe ser gradual para evitar edema cerebral.",
+
+    252: "En CAD hay cetogenesis masiva por lipólisis descontrolada. Los cuerpos cetonicos (acetoacetato, beta-hidroxibutirato, acetona) causan la acidosis y el olor a frutas del aliento.",
+
+    253: "En EHH las cetonas son minimas porque hay suficiente insulina para inhibir la lipólisis. La patologia es principalmente hiperosmolar por hiperglicemia extrema y deshidratacion.",
+
+    254: "La acidosis metabolica de la CAD (pH <7.3, bicarbonato <15) es por acumulacion de cetoácidos. La respiracion de Kussmaul es el intento compensatorio de eliminar CO2.",
+
+    255: "El anion GAP elevado (>12) indica presencia de acidos no medidos, en este caso cetoácidos. Es criterio diagnostico importante de CAD. GAP = Na - (Cl + HCO3).",
+
+    256: "La osmolaridad >320 mOsm/kg en EHH causa deshidratacion celular cerebral, explicando el compromiso neurologico severo. La formula es: 2(Na) + glucosa/18 + BUN/2.8.",
+
+    257: "La respiracion de Kussmaul es rapida y profunda, un intento de compensar la acidosis metabolica eliminando CO2 (acido volatil). Es un signo clasico de CAD severa.",
+
+    258: "En EHH el compromiso neurologico es prominente: desde confusion hasta coma. La osmolaridad extrema deshidrata las neuronas. Puede haber focalizacion neurologica reversible.",
+
+    259: "La CAD se produce por deficit de insulina que activa lipólisis, liberando acidos grasos que se oxidan a cetonas en el higado. Los cetoácidos causan acidosis con anion GAP elevado.",
+
+    260: "En EHH la hiperglicemia severa causa diuresis osmotica masiva, llevando a deshidratacion profunda. Sin suficiente cetogenesis para causar acidosis, la osmolaridad es el problema principal.",
+
+    261: "Esta distincion es fundamental: CAD tiene cetonas y acidosis; EHH tiene hiperosmolaridad sin cetosis significativa. El tratamiento difiere en enfasis (insulina vs hidratacion).",
+
+    # ===== SALAS DE CIRUGIA: CALCULOS (IDs 262-275) =====
+    262: "Calcular la concentracion es basico para dosificar correctamente. Si una ampolla tiene 500 mcg en 10 ml, cada ml tiene 50 mcg. Simple division pero critica para evitar errores.",
+
+    263: "Este calculo de regla de tres es fundamental. Si 1 cc = 50 mcg, para dar 200 mcg necesito 200/50 = 4 cc. Errores aqui pueden causar sobredosis o subdosis.",
+
+    264: "Los porcentajes en farmacologia son gramos por 100 ml. Lidocaina al 1% = 1 g/100 ml = 10 mg/ml. Es convencion medica importante de conocer.",
+
+    265: "El remifentanil es opioide de accion ultracorta ideal para procedimientos. La dosis de induccion (0.4 mcg/kg/min) es mayor que mantenimiento (0.2) porque se busca alcanzar niveles rapidamente.",
+
+    266: "La formula cc/h para bombas de infusion es esencial en anestesia y UCI. Convierte dosis en mcg/kg/min a una velocidad de infusion practica. Es matematica basica pero critica.",
+
+    267: "Este ejercicio refuerza el calculo de infusiones. Con diferente peso, la velocidad cambia proporcionalmente. Es importante verificar siempre los calculos antes de programar bombas.",
+
+    268: "El propofol (200 mg/20 ml) da 10 mg/ml. Para 50 mg se necesitan 5 ml. El propofol es el hipnotico IV mas usado en induccion por su inicio rapido y recuperacion suave.",
+
+    269: "El rocuronio es relajante muscular no despolarizante. Su calculo es igual que otros farmacos: dosis dividida por concentracion. La dosis depende del procedimiento y duracion esperada.",
+
+    270: "La reversion muscular con neostigmina (anticolinesterasico) requiere atropina para bloquear efectos muscarinicos (bradicardia, sialorrea). Es combinacion clasica al final de anestesia general.",
+
+    271: "Esta tabla de practica enseña calculos comunes de anestesia. Los cc a administrar dependen de la presentacion de cada farmaco. Memorizar presentaciones comunes ahorra tiempo.",
+
+    272: "Los tipos de anestesia se eligen segun el procedimiento. General para cirugias mayores, espinal/epidural para abdomen bajo y miembros inferiores, local para procedimientos menores.",
+
+    # ===== SALAS DE CIRUGIA: HERIDAS (IDs 273-279) =====
+    273: "La herida limpia no tiene apertura de viscera hueca (GI, respiratorio, genitourinario). Son las de menor riesgo de infeccion. Ejemplos: herniorrafia, cirugia de tiroides.",
+
+    274: "Limpia contaminada abre viscera hueca pero controladamente y sin derrame. Ejemplo: colecistectomia electiva sin complicaciones. El riesgo de ISO es mayor que en limpia.",
+
+    275: "La herida contaminada tiene transgresion de tecnica, inflamacion o derrame de contenido intestinal. El riesgo de infeccion es significativo (10-17%). Ejemplo: apendicitis no perforada.",
+
+    276: "La herida sucia tiene contaminacion franca (pus, heces) o tejido necrotico. La infeccion es practicamente inevitable (>27%). Ejemplo: peritonitis por perforacion intestinal.",
+
+    277: "La diferencia clave es la apertura de viscera hueca. Tipo I no abre; tipo II abre pero controladamente. Esto refleja el riesgo de contaminar la herida con flora intestinal o respiratoria.",
+
+    278: "Este orden de riesgo guia la profilaxis antibiotica. Limpia puede no requerir antibioticos; sucia requiere tratamiento (no profilaxis). El gradiente refleja la contaminacion esperada.",
+
+    # ===== SALAS DE CIRUGIA: ASA (IDs 279-284) =====
+    279: "ASA I es el paciente sano ideal. Sin enfermedades sistemicas, no fuma, bebe minimo. Tiene el menor riesgo anestesico. Sirve como referencia para comparar otros grupos.",
+
+    280: "ASA II tiene enfermedad leve controlada que no limita actividades. Fumador, bebedor social, obesidad leve, hipertension controlada. Riesgo ligeramente aumentado.",
+
+    281: "ASA III tiene enfermedad severa que limita actividades pero no incapacita. Diabetes con complicaciones, obesidad morbida, EPOC moderado. Requiere optimizacion preoperatoria.",
+
+    282: "ASA IV tiene enfermedad que amenaza la vida constantemente. IAM reciente, angina inestable, sepsis, insuficiencia organica. Alto riesgo anestesico; cirugia solo si es vital.",
+
+    283: "ASA V es paciente moribundo que probablemente no sobreviva sin cirugia. Ruptura de aneurisma, trauma masivo, sangrado intracraneal con herniacion. La cirugia es intento de rescate.",
+
+    284: "ASA VI es exclusivo para donantes de organos con muerte cerebral declarada. El cuerpo se mantiene vivo para preservar organos. No es una categoria de riesgo sino de proposito.",
+
+    # ===== SALAS DE CIRUGIA: VALORACION (IDs 285-290) =====
+    285: "La lista prequirurgica asegura seguridad. El acompanante ayuda en recuperacion, el ayuno previene broncoaspiracion, retirar protesis evita lesiones, los consentimientos son legales.",
+
+    286: "La profilaxis antibiotica 1 hora antes optimiza niveles tisulares al momento de la incision. Cefazolina cubre gram positivos de piel. Clindamicina + gentamicina es alternativa para alergicos.",
+
+    287: "La parada de seguridad (timeout) previene errores como cirugia en sitio equivocado o paciente incorrecto. Es practica de seguridad universal recomendada por la OMS.",
+
+    288: "La escala de Aldrete evalua readiness para alta de recuperacion post-anestesia. Puntua actividad, respiracion, circulacion, conciencia y saturacion. Un puntaje >=9/10 permite el alta.",
+
+    289: "Aldrete evalua la recuperacion de anestesia general. Actividad motora indica reversion del bloqueo. Respiracion, circulacion y conciencia indican recuperacion del agente anestesico.",
+
+    290: "Mallampati predice dificultad de intubacion. Clase I (ve todo) es facil. Clase IV (solo paladar duro) predice dificultad. Se evalua con paciente sentado, boca abierta, sin fonacion.",
+
+    # ===== SALAS DE CIRUGIA: VIA AEREA Y AREAS (IDs 291-295) =====
+    291: "LEMON es mnemotecnia para via aerea dificil en emergencia: Look, Evaluate 3-3-2, Mallampati, Obstruction/Obesity, Neck mobility. Permite evaluacion rapida preintubacion.",
+
+    292: "El area negra es zona de transicion entre exterior y quirofano. Aqui el personal cambia a atuendo quirurgico. Funciona como barrera de proteccion contra contaminacion externa.",
+
+    293: "El area gris requiere uniforme quirurgico completo. Contiene areas de apoyo: central de equipos, medicamentos, recuperacion. Mayor restriccion que negra pero menos que blanca.",
+
+    294: "El area blanca es la mas restringida, donde esta la sala de operaciones. Solo personal autorizado y paciente. Maxima asepsia. El flujo es unidireccional para evitar contaminacion.",
+
+    295: "El flujo de areas protege la esterilidad del quirofano. De menor a mayor restriccion: negra → gris → blanca. El personal avanza descontaminandose; nunca retrocede sin cambiar de atuendo.",
+
+    # ===== ARRITMIAS: TAQUICARDIAS SUPRAVENTRICULARES (IDs 296-309) =====
+    296: "La taquicardia sinusal es respuesta fisiologica (ejercicio, fiebre, anemia, dolor). La causa es el problema, no la arritmia. Tratar la taquicardia sinusal sin tratar la causa es error comun.",
+
+    297: "La heuristica de las 'montanas' es util: entre cada R buscar ondas. Si ves T y P (2 montanas), es sinusal. Si solo ves 1 montaña (T fusionada o P ausente), pensar en TSV u otras.",
+
+    298: "La TSV clasica (reentrante) no muestra P porque la conduccion retrograda oculta la P en el QRS o la T. El ritmo regular y QRS angosto son tipicos. Responde bien a adenosina.",
+
+    299: "La fibrilacion auricular tiene ondas f (pequenas, irregulares) en lugar de P, reflejando actividad auricular caotica. El ritmo irregularmente irregular es su sello distintivo.",
+
+    300: "El flutter tiene ondas F en serrucho porque la actividad auricular es organizada pero muy rapida (250-350/min). Puede ser regular si la conduccion AV es fija, o irregular si varia.",
+
+    301: "La taquicardia nodal se origina en el nodo AV por reentrada. La P puede estar antes, durante o despues del QRS (invertida en derivaciones inferiores) porque la conduccion auricular es retrograda.",
+
+    302: "Esta lista resume las taquicardias supraventriculares sin P normal visible. La taquicardia sinusal SI tiene P normal y es la unica taquicardia de QRS angosto con P claramente visible y positiva.",
+
+    303: "La fibrilacion auricular es la unica taquicardia supraventricular de QRS angosto con ritmo irregularmente irregular. Las demas (sinusal, TSV, flutter, nodal) son regulares o tienen patrones predecibles.",
+
+    # ===== ARRITMIAS: TAQUICARDIAS VENTRICULARES (IDs 304-308) =====
+    304: "La taquicardia ventricular tiene QRS ancho porque el impulso no usa el sistema de conduccion normal. La ausencia de P indica disociacion AV. La frecuencia de 120-300 refleja automatismo ventricular.",
+
+    305: "La morfologia del QRS diferencia monomorfica de polimorfica. Monomorfica sugiere foco unico (cicatriz, isquemia focal). Polimorfica sugiere problema difuso (isquemia aguda, torsade de pointes).",
+
+    306: "La fibrilacion ventricular no tiene QRS porque no hay contraccion ventricular organizada. El corazon tiembla sin bombear sangre. Es ritmo de paro que requiere desfibrilacion inmediata.",
+
+    307: "La amplitud de las ondas en FV indica tiempo de evolucion. Ondas gruesas = reciente, mejor pronostico con desfibrilacion. Ondas finas = evolucionada, peor pronostico, considerar RCP antes de descargar.",
+
+    # ===== ARRITMIAS: BRADIARRITMIAS Y BLOQUEOS (IDs 308-312) =====
+    308: "La bradicardia sinusal puede ser fisiologica (atletas, sueno) o patologica (hipotiroidismo, farmacos). La presencia de ondas P normales y QRS angosto la distingue de otros bloqueos.",
+
+    309: "El bloqueo AV de primer grado tiene PR >200 ms (>5 cuadros pequenos) pero todas las P conducen. Es un retraso, no un bloqueo verdadero. Generalmente benigno pero monitorizar progresion.",
+
+    310: "El fenomeno de Wenckebach (Mobitz I) es alargamiento progresivo del PR hasta que una P no conduce. Indica patologia nodal, generalmente benigna. El ciclo luego reinicia.",
+
+    311: "El Mobitz II tiene PR constante con bloqueo intermitente. Indica patologia infranodal mas seria. Tiene riesgo de progresion a bloqueo completo y generalmente requiere marcapasos.",
+
+    312: "El bloqueo AV completo (tercer grado) tiene disociacion total auriculoventricular. Las P y los QRS tienen ritmos regulares independientes. El escape ventricular es lento (30-40 lpm). Requiere marcapasos.",
+
+    # ===== MEZCLAS Y DILUCIONES (IDs 313-326) =====
+    313: "Usar la dosis mas baja del rango en ejercicios de practica es convencion para evitar calculos que excedan dosis seguras. En clinica real, la dosis se ajusta segun respuesta del paciente.",
+
+    314: "El calculo de concentracion es fundamental: cantidad total dividida por volumen. 1.5 g = 1500 mg en 4 ml da 375 mg/ml. Verificar siempre las unidades antes de calcular.",
+
+    315: "Este calculo determina volumen a administrar: dosis deseada dividida por concentracion. 750 mg / 375 mg/ml = 2 ml. Es regla de tres basica pero errores pueden ser fatales.",
+
+    316: "En este caso de ACV, la PA de 165/120 supera el limite para trombolizar (180/110 es el limite de TA sistolica; aqui la diastolica de 120 supera el limite de 110). Por eso se necesita labetalol primero.",
+
+    317: "El ACV isquemico es Triage II porque es tiempo-dependiente: cada minuto sin tratamiento es tejido cerebral perdido. Aunque los signos vitales puedan estar estables, la urgencia es maxima.",
+
+    318: "El calculo de rtPA requiere precision. Dosis total = peso x 0.9. El 10% en bolo inicia la lisis rapidamente. El 90% restante en 1 hora mantiene el efecto sin aumentar riesgo de sangrado.",
+
+    319: "Convertir dosis de infusion a ml/h: si la concentracion es 1 mg/ml, 76.95 mg en 1 hora = 76.95 ml/h (o aproximadamente 77 ml/h). El bolo de 8.55 mg (8.55 ml) se administra aparte.",
+
+    320: "Preparar mezclas requiere atencion: 500 mg en 500 ml = 1 mg/ml. Con ampollas de 100 mg/20 ml se necesitan 5 ampollas (100 ml de volumen) mas 400 ml de SSN para completar 500 ml.",
+
+    321: "Este calculo integra varios pasos: concentracion de mezcla, dosis por hora basada en peso, y conversion a ml/h. La concentracion de 30 mcg/ml viene de 3 mg (3000 mcg) en 100 ml.",
+
+    322: "Preparar mezclas de fentanilo: 3 mg / 0.5 mg por ampolla = 6 ampollas. Cada ampolla de 10 ml suma 60 ml, entonces se agregan 40 ml de diluyente para completar 100 ml totales.",
+
+    323: "Ketamina a dosis bajas (0.4 mg/kg/h) tiene efecto analgesico. El calculo de ml/h requiere saber la concentracion (20 mg/ml en este caso) y la dosis por hora (30.4 mg/h).",
+
+    324: "Preparar mezcla de ketamina: 2 g (2000 mg) / 500 mg por ampolla = 4 ampollas. Cada ampolla de 10 ml da 40 ml de farmaco, agregar 60 ml SSN para completar 100 ml.",
+
+    325: "Nitroglicerina en infusion requiere conversion de unidades: la dosis viene en mcg/kg/min, hay que multiplicar por 60 para obtener mcg/kg/h, luego por peso para mcg/h, dividir por concentracion para ml/h.",
+
+    326: "Nitroglicerina en DAD 5% (no SSN) es importante: algunos farmacos son incompatibles con ciertos diluyentes. La presentacion de 50 mg/10 ml facilita el calculo: 1 ampolla para 50 mg.",
+
+    # ===== TARJETAS CLOZE: SEMIOLOGIA (IDs 327-331) =====
+    327: "Esta clasificacion de 5 categorias organiza sistematicamente el examen mental. Memorizar que funcion pertenece a cual categoria ayuda a realizar un examen completo y ordenado.",
+
+    328: "Forma, curso y contenido del pensamiento son independientes pero relacionados. Un paciente puede tener forma normal (logica), curso alterado (lento) y contenido patologico (delirios).",
+
+    329: "La arquitectura del sueno es crucial para entender trastornos del sueno. N1-N3 son NREM (sueno restaurador). REM es cuando sonamos. El ciclo se repite varias veces por noche.",
+
+    330: "Las ondas cerebrales reflejan el estado de alerta. Beta = concentrado, alfa = relajado despierto, theta = adormecido, delta = sueno profundo. Gamma se asocia a procesamiento cognitivo alto.",
+
+    331: "Las sensaciones se clasifican segun su origen: exteroceptivas (del exterior via sentidos), propioceptivas (posicion corporal), interoceptivas (estado interno). Cada tipo tiene vias neurologicas distintas.",
+
+    # ===== TARJETAS CLOZE: URGENCIAS (IDs 332-346) =====
+    332: "Esta formula convierte dosis en mcg/kg/min a velocidad de infusion en cc/h. Es fundamental para programar bombas de infusion de farmacos vasoactivos y sedantes en UCI.",
+
+    333: "La formula inversa permite calcular que dosis esta recibiendo el paciente si conocemos la velocidad de infusion. Util para ajustes y para comunicar al equipo la dosis actual.",
+
+    334: "Los calculos en mg/min requieren conversion de tiempo y regla de tres. Es menos comun pero aparece en algunos protocolos antiguos. Saber convertir entre unidades es esencial.",
+
+    335: "La evolucion del EKG en IAM refleja el proceso patologico: isquemia inicial (T picuda), lesion activa (ST elevado), necrosis establecida (Q, T negativa). Permite estimar el tiempo de evolucion.",
+
+    336: "El algoritmo de paro cardiaco para ritmos desfibrilables alterna descargas con RCP, farmacos y verificacion de ritmo. La secuencia descarga-RCP-farmaco se repite hasta retorno de circulacion espontanea.",
+
+    337: "BEBEMONA es mnemotecnia para recordar el tratamiento farmacologico del IAM. Incluye farmacos para reducir isquemia, prevenir trombosis y controlar sintomas. No todos se usan en todos los pacientes.",
+
+    338: "Los betabloqueadores reducen demanda de oxigeno miocardico al disminuir frecuencia y contractilidad. En IAM mejoran supervivencia. Contraindicados en bradicardia, hipotension y falla cardiaca aguda.",
+
+    339: "Las estatinas de alta intensidad (atorvastatina 80 mg, rosuvastatina 40 mg) estabilizan la placa aterosclerotica y reducen eventos recurrentes. Se inician agudamente en el sindrome coronario.",
+
+    340: "Los inhibidores P2Y12 (prasugrel, clopidogrel) inhiben la agregacion plaquetaria complementando a la aspirina. La dosis de carga inicia el efecto rapidamente; la dosis de mantenimiento lo sostiene.",
+
+    341: "La enoxaparina (heparina de bajo peso molecular) previene extension del trombo coronario. La dosis se ajusta por peso y funcion renal. Alternativa: heparina no fraccionada.",
+
+    342: "La morfina se reserva para dolor que no cede a nitratos. Antes se usaba rutinariamente pero estudios sugieren precaucion. Puede causar hipotension, bradicardia y depresion respiratoria.",
+
+    343: "El oxigeno solo si hay hipoxia (SaO2 <90%). El uso rutinario no beneficia y puede ser danino (vasoconstriccion por hiperoxia). Monitorizar saturacion y ajustar.",
+
+    344: "Los nitratos dilatan arterias coronarias y reducen precarga. Utiles en angina e hipertension. Contraindicados con inhibidores de PDE5 (sildenafil) e hipotension.",
+
+    345: "La aspirina inhibe irreversiblemente la COX plaquetaria, previniendo agregacion. La dosis de 300 mg masticada inicia el efecto en minutos. Es el farmaco mas importante en IAM.",
+
+    346: "CORRE es mnemotecnia para reconocer ACV: Cara torcida, Ojo alterado, Rapida debilidad, Raro al hablar, Emergencia. Permite a cualquier persona identificar un posible ACV y activar emergencias.",
+
+    # ===== TARJETAS CLOZE: SALAS (IDs 347-352) =====
+    347: "Las fases de anestesia son induccion (dormirse), mantenimiento (permanecer dormido), recuperacion (despertar). Cada fase usa diferentes farmacos con diferentes objetivos.",
+
+    348: "La induccion usa hipnoticos (propofol, etomidato), analgesicos (opioides), y relajantes musculares para facilitar la intubacion. Los inhalados pueden usarse para induccion por mascarilla.",
+
+    349: "El mantenimiento usa combinacion de farmacos IV o inhalados para mantener hipnosis, analgesia y relajacion muscular segun necesidad del procedimiento. Se ajusta continuamente.",
+
+    350: "La recuperacion incluye revertir el bloqueo muscular (neostigmina + atropina), prevenir nauseas (ondansetron) y asegurar analgesia postoperatoria. La vigilancia continua es esencial.",
+
+    351: "LEMON evalua predictores de via aerea dificil: caracteristicas anatomicas (L), regla 3-3-2 (E), Mallampati (M), obstruccion/obesidad (O), movilidad cervical (N). Multiples positivos aumentan el riesgo.",
+
+    352: "La regla 3-3-2 evalua espacio para laringoscopia: >3 dedos de apertura oral, >3 dedos menton-hioides (espacio submandibular), >2 dedos tiroides-piso de boca (posicion laringea).",
+
+    # ===== TARJETAS CLOZE: ARRITMIAS Y MEZCLAS (IDs 353-354) =====
+    353: "Estos 4 elementos sistematicamente analizados permiten clasificar la mayoria de arritmias: regularidad (regular vs irregular), QRS (ancho vs angosto), onda P (presente, ausente, forma), PR (normal, prolongado, variable).",
+
+    354: "El metodo general para calcular ml/h es: dosis por hora (dosis x peso x 60 si viene por minuto) dividida por concentracion. Es aplicable a cualquier infusion continua basada en peso.",
 }
 
 def main():

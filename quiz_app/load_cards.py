@@ -8,6 +8,21 @@ from text_normalizer import normalize_spanish_text
 
 CARDS_DIR = Path(__file__).parent.parent / "cards"
 
+# Orden determinista de carga para IDs predecibles
+# Importante: no cambiar el orden sin actualizar generate_distractors.py y generate_explanations.py
+CSV_ORDER = [
+    "cards_semiologia.csv",       # IDs 1-209
+    "cards_urgencias_basic.csv",  # IDs 210-261
+    "cards_salas_basic.csv",      # IDs 262-295
+    "cards_arritmias_basic.csv",  # IDs 296-312
+    "cards_mezclas_basic.csv",    # IDs 313-326
+    "cards_semiologia_cloze.csv", # IDs 327-331
+    "cards_urgencias_cloze.csv",  # IDs 332-346
+    "cards_salas_cloze.csv",      # IDs 347-352
+    "cards_arritmias_cloze.csv",  # ID 353
+    "cards_mezclas_cloze.csv",    # ID 354
+]
+
 
 def extract_fuente(dorso: str) -> str | None:
     """Extract the source (Fuente) from the card back."""
@@ -26,13 +41,18 @@ def parse_tag(tag: str) -> tuple[str, str | None]:
     return tema, subtema
 
 
-def is_mcq_eligible(dorso: str) -> bool:
+def is_mcq_eligible(dorso: str, note_type: str = "Basic") -> bool:
     """
     Determine if a card is eligible for MCQ format.
     Returns False if:
+    - Card is Cloze type (designed for fill-in-the-blank, not MCQ)
     - Response has more than 30 words
     - Response is clearly an enumeration (multiple items with commas/semicolons)
     """
+    # Cloze cards are not MCQ eligible - they use {{c1::...}} format
+    if note_type == "Cloze":
+        return False
+
     # Remove HTML tags for word counting
     clean_text = re.sub(r"<[^>]+>", "", dorso)
     # Remove the source part
@@ -59,16 +79,23 @@ def is_mcq_eligible(dorso: str) -> bool:
 def load_csv(csv_path: Path) -> list[dict]:
     """
     Parse a CSV file with Anki format.
-    Skips header lines starting with #.
+    Detects note type (Basic/Cloze) from header.
     """
     cards = []
+    note_type = "Basic"  # Default
 
     with open(csv_path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
 
-            # Skip empty lines and header lines
-            if not line or line.startswith("#"):
+            # Skip empty lines
+            if not line:
+                continue
+
+            # Parse header lines to detect note type
+            if line.startswith("#"):
+                if line.startswith("#notetype:"):
+                    note_type = line.split(":")[1].strip()
                 continue
 
             # Split by pipe
@@ -82,7 +109,7 @@ def load_csv(csv_path: Path) -> list[dict]:
 
             tema, subtema = parse_tag(tag)
             fuente = extract_fuente(dorso)
-            mcq_eligible = is_mcq_eligible(dorso)
+            mcq_eligible = is_mcq_eligible(dorso, note_type)
 
             cards.append({
                 "frente": normalize_spanish_text(frente),
@@ -134,8 +161,20 @@ def main():
     # Initialize database
     init_db()
 
-    # Find all CSV files in cards directory
-    csv_files = list(CARDS_DIR.glob("*.csv"))
+    # Use deterministic order for predictable card IDs
+    csv_files = []
+    for csv_name in CSV_ORDER:
+        csv_path = CARDS_DIR / csv_name
+        if csv_path.exists():
+            csv_files.append(csv_path)
+        else:
+            print(f"⚠️  Warning: {csv_name} not found, skipping")
+
+    # Also load any CSV files not in CSV_ORDER (for future additions)
+    for csv_path in CARDS_DIR.glob("*.csv"):
+        if csv_path.name not in CSV_ORDER:
+            print(f"⚠️  Warning: {csv_path.name} not in CSV_ORDER, loading at end")
+            csv_files.append(csv_path)
 
     if not csv_files:
         print(f"No CSV files found in {CARDS_DIR}")
@@ -149,14 +188,16 @@ def main():
         total_loaded += loaded
         print(f"  Loaded {loaded} new cards from {csv_file.name}")
 
-    # Get total count from DB
+    # Get total count and MCQ eligible count from DB
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM cards")
     total = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM cards WHERE mcq_eligible = 1")
+    mcq_count = cursor.fetchone()[0]
     conn.close()
 
-    print(f"\n✅ Cargadas {total} tarjetas en quiz.db")
+    print(f"\n✅ Cargadas {total} tarjetas en quiz.db ({mcq_count} elegibles para MCQ)")
 
 
 if __name__ == "__main__":
