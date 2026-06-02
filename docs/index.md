@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Inicio
+title: NurseRecall
 ---
 
 # Estudiar enfermería con recuperación activa
