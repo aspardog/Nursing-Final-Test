@@ -12,7 +12,9 @@ short_description: Simulador de examen final de enfermeria.
 
 # Nursing Final Test
 
-Simulador de examen final para estudiantes de enfermeria. El proyecto combina tarjetas tipo Anki, una API FastAPI, una base SQLite y un frontend vanilla para practicar semiologia psiquiatrica con preguntas de opcion multiple y preguntas abiertas.
+Simulador de examen final para estudiantes de enfermeria. El proyecto combina 354 tarjetas tipo Anki, una API FastAPI, una base SQLite y un frontend vanilla para practicar con preguntas de opcion multiple y preguntas abiertas.
+
+**Temas disponibles:** Salud Mental, Urgencias, Cirugia, Mezclas.
 
 ## Funcionalidades
 
@@ -41,8 +43,15 @@ Simulador de examen final para estudiantes de enfermeria. El proyecto combina ta
 
 ```
 Nursing-Final-Test/
-├── cards/
-│   └── cards_semiologia.csv       # Tarjetas fuente (formato Anki)
+├── cards/                         # Tarjetas fuente (formato Anki)
+│   ├── cards_semiologia.csv
+│   ├── cards_urgencias_basic.csv
+│   ├── cards_salas_basic.csv
+│   ├── cards_arritmias_basic.csv
+│   ├── cards_mezclas_basic.csv
+│   └── *_cloze.csv                # Tarjetas tipo Cloze
+├── scripts/
+│   └── import_to_anki.py          # Importador a Anki via AnkiConnect
 ├── quiz_app/
 │   ├── app.py                     # API FastAPI
 │   ├── database.py                # Conexion y esquema SQLite
@@ -136,6 +145,41 @@ cd quiz_app && python load_cards.py
 ```
 
 Las tarjetas se cargan de forma idempotente por texto de pregunta.
+
+## Integracion con Anki
+
+Las tarjetas pueden importarse a Anki para estudio con repeticion espaciada.
+
+### Requisitos
+
+1. [Anki](https://apps.ankiweb.net/) instalado
+2. Complemento [AnkiConnect](https://ankiweb.net/shared/info/2055492159) (codigo: `2055492159`)
+
+### Importar Tarjetas
+
+Con Anki abierto:
+
+```bash
+# Importar todas las tarjetas (354 total)
+python scripts/import_to_anki.py
+
+# Borrar existentes y reimportar (para actualizaciones)
+python scripts/import_to_anki.py --clean
+```
+
+### Estructura de Mazos
+
+| Mazo | Tarjetas | Tipo |
+|------|----------|------|
+| Examen Final Enfermería::Semiología | 214 | Basic + Cloze |
+| Examen Final Enfermería::Urgencias | 67 | Basic + Cloze |
+| Examen Final Enfermería::Salas de Cirugía | 40 | Basic + Cloze |
+| Examen Final Enfermería::Arritmias | 18 | Basic + Cloze |
+| Examen Final Enfermería::Mezclas y Diluciones | 15 | Basic + Cloze |
+
+### Sincronizar con AnkiWeb
+
+Despues de importar, click en **Sincronizar** en Anki para tener las tarjetas en la app movil.
 
 ## Deploy en Hugging Face Spaces
 
