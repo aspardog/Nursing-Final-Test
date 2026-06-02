@@ -7,7 +7,7 @@ import sqlite3
 from pathlib import Path
 
 # Version number - increment this to force database rebuild on HF Spaces
-DB_VERSION = 2  # v2: Added 145 new cards with 4 main topics
+DB_VERSION = 3  # v3: Force update - 354 cards with 4 main topics
 
 # Use /data/ for persistent storage on Hugging Face Spaces
 IS_HF_SPACE = os.environ.get("SPACE_ID") is not None
