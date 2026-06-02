@@ -11,6 +11,77 @@ Esta herramienta combina dos formas de práctica que se complementan: **Anki** p
 [Importar a Anki](guia-anki){: .btn }
 [Guía de la App](guia-app){: .btn }
 
+<style>
+  .study-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin: 2rem 0 1.5rem;
+  }
+
+  .study-flow-step {
+    border: 1px solid #dce6f0;
+    border-radius: 8px;
+    padding: 0.9rem;
+    background: #f8fbfd;
+    text-align: center;
+  }
+
+  .study-flow-step strong {
+    display: block;
+    color: #155f7a;
+    margin-bottom: 0.3rem;
+  }
+
+  .study-flow-step span {
+    display: block;
+    color: #5b6770;
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .study-flow-arrow {
+    align-self: center;
+    color: #159957;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  @media (max-width: 720px) {
+    .study-flow {
+      grid-template-columns: 1fr;
+    }
+
+    .study-flow-arrow {
+      text-align: center;
+      transform: rotate(90deg);
+    }
+  }
+</style>
+
+<div class="study-flow" aria-label="Flujo de estudio con Anki y quizzes">
+  <div class="study-flow-step">
+    <strong>Anki diario</strong>
+    <span>recuperar conceptos</span>
+  </div>
+  <div class="study-flow-arrow">→</div>
+  <div class="study-flow-step">
+    <strong>Quiz corto</strong>
+    <span>probar transferencia</span>
+  </div>
+  <div class="study-flow-arrow">→</div>
+  <div class="study-flow-step">
+    <strong>Revisión</strong>
+    <span>corregir errores</span>
+  </div>
+  <div class="study-flow-arrow">→</div>
+  <div class="study-flow-step">
+    <strong>Repaso dirigido</strong>
+    <span>volver a lo débil</span>
+  </div>
+</div>
+
 ---
 
 ## La lógica de estudio
