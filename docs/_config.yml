@@ -1,0 +1,24 @@
+title: Quiz Enfermería
+description: Simulador de examen final para estudiantes de enfermería con 354 tarjetas de estudio
+theme: jekyll-theme-cayman
+show_downloads: false
+
+# URL settings
+baseurl: /Nursing-Final-Test
+url: https://aspardog.github.io
+
+# Navigation
+header_pages:
+  - index.md
+  - guia-app.md
+  - guia-anki.md
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
